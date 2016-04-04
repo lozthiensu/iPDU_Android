@@ -1,0 +1,34 @@
+<div ng-controller="page_Contact_Ctrl">
+    <div ng-class="cssListThread">  
+        <div ng-repeat="datax in listContact | filter: searchMajor">
+            <div ng-class="cssLinkMenu">
+                <div class="hoctap_text">Tên<br>Số điện thoại<br>Khoa</div>
+                <div class="hoctap_data">{{::datax.name}}<br>{{::datax.phone}}<br>{{::datax.khoa}}</div>
+            </div>
+            <div class="clear_both"></div>  
+        </div>  
+    </div>
+
+	<div id="chonTheLoaiContact" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
+		<div class="modal-dialog">
+			<div ng-class="cssModalCat">
+				<div ng-class="cssModeModalCat">
+					<button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+					<h4 class="modal-title">Chọn thể loại</h4>
+				</div>
+				<div ng-repeat="daChon in theLoaiList track by daChon.id">
+					<div class="itemSelect" ng-click="chonTheLoai(daChon)" data-dismiss="modal">{{::daChon.name}}
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>    
+	<div ng-class="cssModeHeader"> 
+		<div ng-class="cssModeModalHeader">
+             
+			<button type="button" class="back_back" role="button"></button> 
+            <span class="modal-title">Danh bạ giáo viên</span> 
+			<button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiContact" data-toggle="modal" role="button"></button> 
+        </div>     
+    </div>
+</div> 

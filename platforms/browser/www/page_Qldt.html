@@ -1,0 +1,210 @@
+<div ng-controller="page_Qldt_Ctrl">
+    <div ng-class="cssloginBoxQldt">
+        <img class="icon_tieude_login" src="img\avatar.png" ng-touchend="showBoxlogin = !showBoxlogin">
+        <div class="tieude_login" ng-click="showBoxlogin = !showBoxlogin">
+            <h4>{{titleLoginBox}}<br></h4>
+        </div>
+        <div ng-if="showBoxlogin">
+            <div class="xem_noidung" ng-if="!travedaDangnhap()">
+                <input class="input_login" type="text" placeholder="Mã sinh viên" ng-model="inforLogin.taiKhoan">
+                <input class="input_login" type="text" placeholder="Mật khẩu" ng-model="inforLogin.matKhau">
+                <button class="button_login" ng-click="Ktra();"> Đăng nhập</button>
+                <br>
+            </div>
+            <div ng-if="travedaDangnhap()" ng-repeat="loginRec in loginRec">
+                <div class="xem_noidung">
+                    <br>
+                    <div style="padding: 10px;"> 
+                        <h4>{{::loginRec.Name}}</h4>
+                        <br> Mã SV: <b> 13D480201101</b>
+                        <br> Ngày sinh: <b>{{::loginRec.Birthday}}</b>
+                        <br> Lớp: <b>{{::loginRec.Class}}</b>
+                    </div>
+                    <button class="ion-log-out button_login" ng-click="dangXuat();"> Đăng xuất</button>
+                    <div data-target="#xemKetQuaHocTap" data-toggle="modal" role="button">
+                        <div class="link_menu">Xem kết quả học tập</div>
+                    </div>
+                    <div data-target="#dangKiHocPhan" data-toggle="modal" role="button">
+                        <div class="link_menu">Đăng kí học phần</div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="cssListThreadQldt">
+        <div infinite-scroll='getDataFromSever()' infinite-scroll-distance='2' infinite-scroll-parent='true'>
+            <div ng-repeat="itemQldt in dataListQldt track by itemQldt.Id">
+                <div class="list_ban_khach_repeat" data-target="#hienBaiQldt" data-toggle="modal" ng-click="showDataId(itemQldt)" role="button">
+                    <div style="width:100%; font-size:120px; color:#fff; text-align:center;">{{::itemQldt.ThumbText}}</div>
+                    <div ng-class="cssTitleList">
+                        <span class="rutgon_text">{{::itemQldt.Title}}</span>
+                        <font size="2">{{::itemQldt.Cat}} - {{::itemQldt.Date}}</font>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="noMoreItemsAvailable">
+                <center>Bạn đã xem hết.. </center>
+            </div>
+        </div>
+    </div>
+    <div id="hienBaiQldt" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-repeat="datapdu in datapdu" ng-class="cssModalContent">
+                <div class="scroller_content">
+                    <div ng-class="cssFontSize"><b>{{::datapdu.Title}} </b></div>
+                    <div class="baiviet_tieude_content">
+                        <div class="baiviet_tieude_title">
+                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-touchend="saveToSQLite(datapdu);"></i>
+                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-touchend="deleteToSQLite(datapdu);"></i>
+                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
+                        </div>
+                        <div class="baiviet_tieude_info">
+                            <div class="font1">
+                                {{::datapdu.Author}}
+                                <br>
+                                <font size="2" color="gray">{{::datapdu.Date}}</font>
+                            </div>
+                        </div>
+                        <div class="baiviet_tieude_cleared"></div>
+                    </div>
+                    <div ng-class="cssFontSize" compile="::datapdu.Content"></div>
+                </div>
+            </div>
+            <div ng-class="cssModeHeader">
+                <div ng-class="cssModeModalHeader">
+        
+                    <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
+                    <span class="modal-title">Xem bài viết</span>
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemQldt" data-toggle="modal" role="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="xemKetQuaHocTap" class="modal fade" tabindex="-1" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-class="cssListThread">
+                <div ng-repeat="monHoc in loginRec[0].Study">
+                    <div ng-class="cssLinkMenu">
+                        <div class="hoctap_text">Tên
+                            <br>Tín chỉ
+                            <br>TBKT
+                            <br>Thi 1
+                            <br>Học kỳ
+                            <br>Điểm chữ
+                            <br>Điểm quy đổi</div>
+                        <div class="hoctap_data">
+                            {{::monHoc.TEN}}
+                            <br>{{::monHoc.TC}}
+                            <br>{{::monHoc.TBKT}}
+                            <br>{{::monHoc.THI1}}
+                            <br>{{::monHoc.HK}}
+                            <br>{{::monHoc.DC}}
+                            <br>{{::monHoc.DQD}}</div>
+                    </div>
+                    <div class="clear_both"></div>
+                </div>
+            </div>
+            <div ng-class="cssModeHeader">
+                <div ng-class="cssModeModalHeader">
+                    
+                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <span class="modal-title">Kết quả học tập</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dangKiHocPhan" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-class="cssModalContent">
+                <div ng-class="cssdkHocPhan">
+                    <div class="text_center"><span class="span_hocphan">Học phần đã đăng kí</span></div>
+                    <div ng-class="cssLinkMenu" ng-repeat="daKi in hpDaKi">
+                        <div class="version_text height_hocphan"><i class="size-24"></i>{{::daKi.name}}</div>
+                        <div class="version_data height_hocphan" ng-repeat="lopx in daKi.lophoc"><i class="size-24"></i>{{::lopx.name}}</div>
+                    </div>
+                    <br><br>
+                    <div ng-repeat="hocPhan in danhSachHocPhan">
+                        <div class="text_center">
+                            <span class="span_hocphan">Học phần đang cho phép đăng kí</span>
+                            <span class="span_hocphan">{{::hocPhan.name}}</span>
+                        </div>
+                        <br><br>
+                        <div ng-repeat="lop in hocPhan.lophoc">
+                            <div ng-class="cssLinkMenu"  ng-click="dkHocPhan(lop)"><i class="size-24"></i>{{::lop.name}}</div>
+                        </div>
+                        <div ng-class="cssLinkMenu"  ng-click="dkHocPhan('')"><i class="size-24"></i>Hủy đăng kí</div>
+                    </div>
+                </div>
+            </div>
+            <div ng-class="cssModeHeader">
+                <div ng-class="cssModeModalHeader">
+                    
+                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <span class="modal-title">Đăng kí học phần</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="caiDatKhiXemQldt" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-class="cssModalHeaderSetting">
+                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <span class="modal-title">Cài đặt</span>
+            </div>
+            <div class="setting_content">
+                <div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13"> Cỡ chữ</span></div>
+                <div class="setting_info">
+                    <div class="sizefont_buttons" class="text-center">
+                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);">
+                            <span class="size-11">1</span>
+                        </a>
+                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);">
+                            <span class="size-13">2</span>
+                        </a>
+                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);">
+                            <span class="size-17">3</span>
+                        </a>
+                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);">
+                            <span class="size-22">4</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="setting_cleared"></div>
+                <div class="setting_title">
+                    <i span class="ion-ios-cloudy-night-outline size-35"></i>
+                    <span class="size-13"> Ban đêm</span>
+                </div>
+                <div ng-repeat="settingData in settingData" class="setting_info">
+                    <div class="setting_info_toogle">
+                        <input type="checkbox" name="checkbox1" id="checkbox3" class="ios-toggle" ng-model="settingData.nightMode" />
+                        <label for="checkbox3" class="checkbox-label"></label>
+                    </div>
+                </div>
+                <div class="setting_cleared"></div>
+            </div>
+        </div>
+    </div>
+    <div id="chonTheLoaiQldt" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div ng-class="cssModalCat">
+                <div ng-class="cssModeModalCat">
+                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <h4 class="modal-title">Chọn thể loại</h4>
+                </div>
+                <div ng-repeat="daChon in theLoaiList track by daChon.id">
+                    <div class="itemSelect" ng-tap="chonTheLoai(daChon)" data-dismiss="modal">{{::daChon.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="cssModeHeader">
+        <div ng-class="cssModeModalHeader">
+
+            <button type="button" class="back_back" role="button"></button>
+            <span class="modal-title">Quản lí đào tạo</span>
+            <button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiQldt" data-toggle="modal" role="button"></button>
+        </div>
+    </div>
+</div>
