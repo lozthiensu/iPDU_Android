@@ -631,10 +631,10 @@ i {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     margin: 0 -10px 0 -10px;
-    background-color: #dde0e7;
+    background-color: #fff;
 }
 .scroller_dkhocphan-night {
-    color: #727272;
+    color: #fafafa;
 	background-color: #0d0d0d !important;
 }
 
