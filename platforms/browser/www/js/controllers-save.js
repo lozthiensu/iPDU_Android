@@ -67,7 +67,7 @@ angular.module('pduNewsApp')
             , "nightMode": $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.style(1);
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
@@ -83,7 +83,7 @@ angular.module('pduNewsApp')
             $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet-night";
             $rootScope.cssScrollInfo = "scroller_info            scroller_info-night";
         } else {
-            $cordovaStatusbar.style(0);
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssModeModalCat = "modal-header-theloai";
@@ -107,6 +107,9 @@ angular.module('pduNewsApp')
         $scope.getTrangThaiModal();
         $cordovaSQLite.execute($rootScope.db, "SELECT * FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.baiviet_id]).then(function (res) {
             $scope.datapdu.push(res.rows.item(0));
+            var textBefore = $scope.datapdu[0].baiviet_content;
+            var textAfter = textBefore.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhSave' data-toggle='modal' ");
+            $scope.datapdu[0].baiviet_content = textAfter;
         });
     };
 
@@ -125,7 +128,7 @@ angular.module('pduNewsApp')
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
         var json = JSON.parse(data);
-        PhotoViewer.show(json[url].Url, $scope.datapdu[0].baiviet_title); 
+        $scope.urlImgageZoom = json[url].Url; 
     };
 
 

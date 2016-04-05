@@ -5104,11 +5104,11 @@ button.list-group-item-danger.active:focus {
   float: right;
   font-size: 30px;
   line-height: 1;
-  color: #0187ff; 
+  color: #fff; 
 }
 .back_back:hover,
 .back_back:focus {
-  color: #0187ff;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5136,11 +5136,11 @@ button.back_back {
   float: left;
   font-size: 30px;
   line-height: 1;
-  color: #0187ff;
+  color: #fff;
 }
 .setting_on_read:hover,
 .setting_on_read:focus {
-  color: #0187ff;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5159,11 +5159,11 @@ button.setting_on_read {
   font-size: 30px;
   font-weight: bold;
   line-height: 1;
-  color: #0187ff; 
+  color: #fff; 
 }
 .close:hover,
 .close:focus {
-  color: #0187ff;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5180,13 +5180,13 @@ button.close {
   font-size: 40px;
   font-weight: bold;
   line-height: 1;
-  color: #0187ff;
+  color: #fff;
     right: 0;
     margin-right: 20px;
 }
 .closeImg:hover,
 .closeImg:focus {
-  color: #0187ff;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5244,7 +5244,7 @@ button.closeImg {
   outline: 0;
 }
 .modal-content-night {
-  background-color: #000 !important;
+  background-color: #0d0d0d !important;
   color: #B2B2B2;
 }
 .modal-backdrop {

@@ -111,10 +111,10 @@ angular.module('pduNewsApp')
             "nightMode":    $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.styleHex('#0d0d0d');
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
-            $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet-night";
+            $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet_qldt-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
             $rootScope.cssModalContent = "xem_baiviet_bogoc_modal  xem_baiviet_bogoc_modal-night";
             $rootScope.cssModeHeader = "menu_header              menu_header-night";
@@ -124,8 +124,9 @@ angular.module('pduNewsApp')
             $rootScope.cssloginBoxQldt = "loginbox_qldt            loginbox_qldt-night";
             $rootScope.cssdkHocPhan = "scroller_dkhocphan            scroller_dkhocphan-night";
             $rootScope.cssModeFooter            = "menu_footer              menu_footer-night";
-        } else { 
-            $cordovaStatusbar.styleHex('#b3b3b3'); 
+            $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
+        } else {
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt";
@@ -138,6 +139,7 @@ angular.module('pduNewsApp')
             $rootScope.cssloginBoxQldt = "loginbox_qldt";
             $rootScope.cssdkHocPhan = "scroller_dkhocphan";
             $rootScope.cssModeFooter            = "menu_footer";
+            $rootScope.cssItemSelect            = "itemSelect";
         }
     };
 
@@ -302,9 +304,6 @@ angular.module('pduNewsApp')
     $scope.showDataId = function (idBaiViet) {
         pduService.Qldt_getId(idBaiViet.Id).success(function (datapdus) {
             $scope.datapdu = datapdus;
-            var textBefore = $scope.datapdu[0].Content;
-            var textAfter = textBefore.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhQldt' data-toggle='modal' ");
-            $scope.datapdu[0].Content = textAfter;
         });
         $scope.getTrangThaiModal();
     };

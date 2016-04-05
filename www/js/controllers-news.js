@@ -158,7 +158,7 @@ angular.module('pduNewsApp')
             , "nightMode": $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode === true) {
-            $cordovaStatusbar.styleHex('#0d0d0d');
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
@@ -169,8 +169,8 @@ angular.module('pduNewsApp')
             $rootScope.cssModal = "modal-content            modal-content-night";
             $rootScope.cssMenuOther = "list_menu                list_menu-night";
             $rootScope.cssModeFooter            = "menu_footer              menu_footer-night";
-        } else { 
-            $cordovaStatusbar.styleHex('#b3b3b3'); 
+        } else {
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssModeModalCat = "modal-header-theloai";

@@ -23,30 +23,6 @@ span.menu4icontitle{
 }
 
 
-/* Size icon footer */
-.size-24 { font-size: 24px; }
-.size-35 { font-size: 35px; }
-.size-45 { font-size: 40px; }
-.size-40 { font-size: 30px; } 
- 
-
-/* Size font khi xem bài viết */
-.size-11 { font-size: 11pt; } 
-.size-13 { font-size: 13pt; } 
-.size-17 { font-size: 17pt; } 
-.size-22 { font-size: 22pt; } 
-
-
-/* List bai viet home */
-.list_ban_khach_repeat {
-	background-color: #B3E5FC !important;
-	width: 100%;
-    height: 190px;
-    margin-bottom: 25px;
-    position: relative;
-}
-
-
 /*Thanh hien hinh anh khi xem  bai viet*/
 .scroller_img {
     position: relative;
@@ -62,19 +38,82 @@ img.center {
 }
 
 
+/* Size icon footer */
+.size-24 { font-size: 24px; }
+.size-35 { font-size: 35px; }
+.size-45 { font-size: 40px; }
+.size-40 { font-size: 30px; } 
+ 
+
+/* Size font khi xem bài viết */
+.size-11 { font-size: 11pt; } 
+.size-13 { font-size: 13pt; } 
+.size-17 { font-size: 17pt; } 
+.size-22 { font-size: 22pt; } 
+
+ 
+/* Hiển thị list bài viết quan ly dao tao */
+.list_baiviet_qldt{
+	padding-top:150px;
+	background-color: #fff !important;
+	padding-bottom:40px; 
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; 
+	height: 100vh;
+}.list_baiviet{
+	padding-top:70px;
+	background-color: #fff !important;
+	padding-bottom:60px; 
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; 
+	height: 100vh; 
+}.list_baiviet-night{
+	background-color: #0d0d0d !important;
+}.list_baiviet_qldt-night{
+	background-color: #0d0d0d !important;
+}
+
+
+/* List bai viet home */
+.list_ban_khach_repeat { 
+	width: 100%;
+    height: 100px;
+    margin-bottom: 25px;
+    position: relative;
+}
+.imgList{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    font-size: 85px;
+    color:#fff;
+    text-align:center;
+    margin-left: 15px;
+	background-color: #b9f6ca !important;
+}
+
+
 /*Hien thi ten list bai viet*/
 .title_desk{    
     padding-left: 7px;
 	font-size:14px;
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%; 
+    left: 115px;
+    width: calc(100vw - 130px); 
 	color:#000;
-    background: rgba(255,255,255,.8);  
+    height: 100px;
+    margin-right: 15px;
+    padding-top: 10px;
+    
 }.title_desk-night{     
-	color:#fafafa;
-    background: rgba(0,0,0,.9);   
+	color:#B2B2B2;  
+}
+.catandDate{
+    margin-top: 70px ; 
+    margin-left: 120px; 
+    padding-top: 0px;
+    position: absolute;
 }
 
 
@@ -84,7 +123,7 @@ img.center {
     overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box; 
-   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-line-clamp: 2; /* number of lines to show */
    -webkit-box-orient: vertical;
 } 
 
@@ -105,7 +144,7 @@ img.center {
 } 
 .status_buttons a.active span   {
 	text-decoration: none;
-	color:#0187ff;
+	color:#2dbe60;
 }
 .status_buttons-night a { 
 	color:#B2B2B2;
@@ -124,12 +163,13 @@ img.center {
 	width:17%; 
 	margin-left:5%;
 	border-radius:10px;
+	color:#2dbe60;
 }
 .sizefont_buttons a:hover {  
 	text-align:center;
 	text-decoration:none;
 	color:#FFF;
-	background-color: #0187ff !important; 
+	background-color: #2dbe60 !important; 
 }
 .sizefont_buttons span {
 	text-decoration:none;  
@@ -140,7 +180,7 @@ img.center {
 	text-align:center;
 	text-decoration: none;
 	color:#FFF;
-	background-color: #0187ff !important;
+	background-color: #2dbe60 !important;
 	border-radius:10px;
 }
 
@@ -153,7 +193,7 @@ img.center {
 
 /* Định dạng header menu*/
 .menu_header{
-	color:#000; 
+	color:#fff; 
 	text-align:center;
 	position:fixed;  
 	width: 100%; 
@@ -163,13 +203,10 @@ img.center {
 	top: 0;   
 	left: 0;
     height: 45px; 
-    background-color: #FAFAFA;
-    -webkit-box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
-    -moz-box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
-    box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
+    background-color: #2dbe60 !important;  
 }.menu_header-night{
 	color: #FAFAFA;
-    background-color: #0d0d0d;
+    background-color: #0A0A0A !important; 
 }
 
 
@@ -181,14 +218,13 @@ img.center {
     width:100%;
 	-webkit-backface-visibility: hidden;
     bottom: 0; 
-    z-index: 100; 
-    background-color: #FAFAFA !important;  
-    -webkit-box-shadow: 0px -2px 5px rgba(156,156,156,0.75);
-    -moz-box-shadow: 0px -2px 5px rgba(156,156,156,0.75);
-    box-shadow: 0px -2px 5px rgba(156,156,156,0.75);
+    z-index: 100;
+	border-top:#9E9E9E solid 0.75px !important;
+    background-color: #FAFAFA !important;    
 }.menu_footer-night{
-	color:#0187ff;      
-    background-color: #0d0d0d !important;
+	color:#2dbe60;      
+    background-color: #0A0A0A !important;
+	border-top:#1a1a1a solid 0.75px !important;  
 }
 
 /*Dinh dang cho footer*/
@@ -197,7 +233,7 @@ img.center {
 	background-color: #212121 ; 
 }
 .night_Mode_Content {
-	background-color: #000 !important; 
+	background-color: #0d0d0d !important; 
 }
 
 
@@ -230,6 +266,8 @@ img.center {
 /*Bo tri noi dung khi xem bai viet*/
 .baiviet_tieude_content {
   margin-right: 150px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }.baiviet_tieude_title{
   float: right;
   width: 150px;
@@ -237,13 +275,14 @@ img.center {
   padding-right: 15px;
   padding-bottom:5px; 
   padding-top:5px;
-  color: #0187ff;
+  color: #2dbe60;
 }.baiviet_tieude_info{
   float: left;
   width: 100%; 
   padding-bottom:5px; 
-  padding-top:5px;  
+  margin-top:10px;  
 }.baiviet_tieude_cleared { 
+  margin-top:15px; 
   clear: both;
 }
 
@@ -279,43 +318,59 @@ img.center {
 .link_menu {
 	width:100%;
 	color:	#000; 
-    background-color: #fff;
 	text-align:left;  
-	padding:10px;
-	margin-top:15px; 
+	padding: 15px;
+	margin-top:0px;
+/*    border-bottom: 0.75px solid #999999 !important;*/
 }
 .link_menu-night {
 	color: #FAFAFA;
-	background-color: #212121 !important;  
+/*    border-bottom: 0.75px solid #212121 !important; */
+}
+.link_menu-night:last-child {
+    border-bottom: none;  
+}
+.link_menu:last-child {
+    border-bottom: none; 
 }
 
 
 /* Thanh menu header */
-.modal-header { 
+.modal-header {
+/*	border-bottom:#9E9E9E solid 0.75px;*/
 	text-align:center;   
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt;
     height: 45px;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(166, 166, 166, 0.5);
+    -moz-box-shadow:    0px 4px 4px 0px rgba(166, 166, 166, 0.5);
+    box-shadow:         0px 4px 4px 0px rgba(166, 166, 166, 0.5);
 }   
 .modal-header-night {
 	color: #FAFAFA !important;
-    background-color: #0d0d0d !important; 
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(25, 25, 25, 0.5);
+    -moz-box-shadow:    0px 4px 4px 0px rgba(25, 25, 25, 0.5);
+    box-shadow:         0px 4px 4px 0px rgba(25, 25, 25, 0.5);
 }
 
 
 /*Thanh menu header cai dat*/ 
-.modal-header-setting { 
-	border-bottom:#9E9E9E solid 1px;
+.modal-header-setting {
+	border-top:#9E9E9E solid 0.75px;
+	border-bottom:#9E9E9E solid 0.75px;
     padding: 7px 20px 7.5px 20px;
 	text-align:center;  
-	color:	#000;
+	color:	#fff;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt;
     height: 45px;
-    background-color: #FAFAFA !important;  
+	background-color: #2dbe60 !important; 
+
 }.modal-header-setting-night { 
-    background-color: #0d0d0d !important; 
 	color: #FAFAFA !important;
+	background-color: #0A0A0A !important; 
+	border-top:#1a1a1a solid 0.75px;
+	border-bottom:#1a1a1a solid 0.75px;
 }  
 
 
@@ -330,7 +385,7 @@ img.center {
     padding: 5px 10px;
     font-weight: 400;
     text-transform: uppercase;
-    color: #0187ff;
+    color: #2dbe60;
     text-align: center;
     font-weight: 700
 }
@@ -347,7 +402,7 @@ img.center {
     margin-bottom: 5px;
     padding-top: 30px;
     padding-bottom: 5px;
-    border-bottom: 3px solid #0187ff;
+    border-bottom: 3px solid #2dbe60;
     padding: 10px 0;
     margin-bottom: 20px;
     float: left
@@ -360,16 +415,20 @@ img.center {
 
 /* Ding dang menu chon the loai bai viet */
 .modal-header-theloai {
-	border-top:#9E9E9E solid 1px; 
+	border-top:#9E9E9E solid 0.75px !important; 
 	padding: 12px 7px 0px 20px;  
 	height:50px;
 	text-align:center;
 	margin-top:30%;   
-	color:	#000;
+	color:	#fff;
+    background-color: #2dbe60;
+	border-bottom:#9E9E9E solid 0.75px !important; 
 } 
 .modal-header-theloai-night {
-	color: #FAFAFA;
-    background-color: #0d0d0d !important;
+	color: #FAFAFA; 
+    background-color: #0A0A0A;
+	border-top:#1a1a1a solid 0.75px !important; 
+	border-bottom:#1a1a1a solid 0.75px !important; 
 }
 
 
@@ -382,7 +441,7 @@ img.center {
   outline: 0;
 } 
 .modal-content-theloai-night {
-  background-color: #000 !important;
+  background-color: #0d0d0d !important;
   color: #B2B2B2;
 }
 
@@ -392,8 +451,10 @@ img.center {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt; 
 	text-align:center; 
-	border-top: #9E9E9E solid 1px !important; 
+	border-bottom: #9E9E9E solid 0.75px !important; 
 	padding:15px; 
+}.itemSelect-night {
+	border-bottom:#1a1a1a solid 0.75px !important; 
 } 
 
 
@@ -404,14 +465,11 @@ img.center {
     top:45px;
     width:100%;
     z-index:100; 
-    background: rgba(221, 224, 231,.85);  
-    -webkit-box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
-    -moz-box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
-    box-shadow: 0px 3px 8px rgba(156,156,156,0.75);
+    background-color: #fff;   
 }
 .loginbox_qldt-night{
 	color: #FAFAFA; 
-    background: rgba(0,0,0,.9);
+    background-color: #0a0a0a;   
 }
 
 
@@ -503,34 +561,14 @@ img.center {
 
 /*Dinh dang list menu o tab khac*/
 .list_menu{
-	padding-top:50px;
-	background-color: #dde0e7 !important;
-	padding-bottom:50px; 
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; 
-	height: calc(100vh - 46px); 
-}.list_menu-night{
-	background-color: #000000 !important;
-}
-
-
-/* Hiển thị list bài viết quan ly dao tao */
-.list_baiviet_qldt{
-	padding-top:130px;
-	background-color: #dde0e7 !important;
-	padding-bottom:40px; 
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; 
-	height: calc(100vh - 46px); 
-}.list_baiviet{
 	padding-top:70px;
-	background-color: #dde0e7 !important;
-	padding-bottom:50px; 
+	background-color: #fff !important;
+	padding-bottom:70px; 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; 
 	height: 100vh; 
-}.list_baiviet-night{
-	background-color: #000000 !important;
+}.list_menu-night{
+	background-color: #0d0d0d !important;
 }
 
 
@@ -547,7 +585,7 @@ i {
 	
 }
 .slide-night {
-	background-color: #000 !important;
+	background-color: #0d0d0d !important;
 }
 .wrapper {
     margin: 0 auto;
@@ -561,15 +599,15 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 5px 0 20px 0;
+    padding: 75px 0 20px 0;
     margin: 0 -10px 0 -10px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    background-color: #dde0e7;
+    background-color: #fff;
 }
 .scroller_info-night {
     color: #727272;
-    background-color: #000;
+	background-color: #0d0d0d !important;
 }
 
 
@@ -589,7 +627,7 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 55px 0 20px 0;
+    padding: 75px 0 20px 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     margin: 0 -10px 0 -10px;
@@ -597,7 +635,7 @@ i {
 }
 .scroller_dkhocphan-night {
     color: #727272;
-    background-color: #000;
+	background-color: #0d0d0d !important;
 }
 
 
@@ -609,7 +647,7 @@ i {
     display: block;
     height: 100vh;
 }.xem_baiviet_bogoc_modal-night { 
-	background-color: #000 !important; 
+	background-color: #0d0d0d !important;
 }
  
 
@@ -641,12 +679,15 @@ i {
 	width: 100%;
 	border:none;
 	margin-top: 10px;  
-	text-indent: 10px;	
+	text-indent: 10px;
+    color: #2dbe60;
+    font-weight: bold;
+    border-bottom: 0.75px solid #2dbe60;
 }
 .button_login:focus, .input_login:focus{
     outline: 0;
 }.button_login {
-	background-color: #0187ff;
+	background-color: #2dbe60;
 	height:40px;
 	width: 100%;
 	border:none;
@@ -736,15 +777,15 @@ left:60px;
 width:36px;
 }
 #checkbox3 + .checkbox-label{
--webkit-box-shadow:inset 0 0 0 0px #0187ff,0 0 0 2px #dddddd;
-   -moz-box-shadow:inset 0 0 0 0px #0187ff,0 0 0 2px #dddddd;
-        box-shadow:inset 0 0 0 0px #0187ff,0 0 0 2px #dddddd;
+-webkit-box-shadow:inset 0 0 0 0px #2dbe60,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #2dbe60,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #2dbe60,0 0 0 2px #dddddd;
 }
 #checkbox3:checked + .checkbox-label{
--webkit-box-shadow:inset 0 0 0 20px #0187ff,0 0 0 2px #0187ff;
-   -moz-box-shadow:inset 0 0 0 20px #0187ff,0 0 0 2px #0187ff;
-        box-shadow:inset 0 0 0 20px #0187ff,0 0 0 2px #0187ff;
+-webkit-box-shadow:inset 0 0 0 20px #2dbe60,0 0 0 2px #2dbe60;
+   -moz-box-shadow:inset 0 0 0 20px #2dbe60,0 0 0 2px #2dbe60;
+        box-shadow:inset 0 0 0 20px #2dbe60,0 0 0 2px #2dbe60;
 }
 #checkbox3:checked + .checkbox-label:after{
-color:#0187ff;
+color:#2dbe60;
 }

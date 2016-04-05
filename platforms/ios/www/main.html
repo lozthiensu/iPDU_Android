@@ -61,7 +61,6 @@
         </div>
         <div ng-class="cssModeHeader">
             <div ng-class="cssModeModalHeader">
-                
 			    <button type="button" class="back_back" role="button"></button>
                 <span class="modal-title">Danh sách trang</span>
                 <button type="button" class="setting_on_read ion-ios-information-outline" data-target="#hienInfoApp" data-toggle="modal" ng-click="getTrangThaiModal();" role="button"></button>
@@ -73,14 +72,8 @@
     <div id="hienInfoApp" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
         <div ng-http-loader template="loader.tpl.html"></div>
         <div ng-class="cssModal">
-            <div ng-class="cssModeModalHeader">
-                 
-                <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
-                <span class="modal-title">Thông tin sản phẩm</span>
-			     <button type="button" class="setting_on_read" role="button"></button>
-            </div>
             <div ng-class="cssModalContent">
-                <div ng-class="cssScrollInfo">
+                <div ng-class="cssMenuOther">
                     <div ng-class="cssLinkMenu">
                         <div class="version_text"><i class="size-24"></i>Phiên bản hiện tại</div>
                         <div class="version_data"><i class="size-24"></i>0.1 Beta</div>
@@ -89,9 +82,18 @@
                     <div ng-class="cssLinkMenu" data-target="#huongDan" data-toggle="modal"><i class="size-24"></i>Hướng dẫn sử dụng</div>
                     <div ng-class="cssLinkMenu" data-target="#dieuKhoan" data-toggle="modal"><i class="size-24"></i>Điều khoản sử dụng</div>
                     <a style="cursor: pointer; text-decoration:none;" href="https://www.facebook.com/My.Name.Is.Kakalot"><div ng-class="cssLinkMenu"><i class="size-24"></i>Liên hệ Facebook</div></a>
-                    <div class="last_info">Sản phẩm nghiên cứu khoa học<br>Khoa Công Nghệ Thông Tin<br> 99 Hùng Vương - TP Quảng Ngãi <br><br>&copy2016 Đại học Phạm Văn Đồng</div>
+                    <div class="last_info">
+                        <img src="img\logo.png"><br>
+                        Sản phẩm nghiên cứu khoa học<br>Khoa Công Nghệ Thông Tin<br> 99 Hùng Vương - TP Quảng Ngãi <br><br>&copy2016 Đại học Phạm Văn Đồng</div>
                 </div>
             </div>
+	            <div ng-class="cssModeHeader"> 
+            <div ng-class="cssModeModalHeader">
+                <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
+                <span class="modal-title">Thông tin sản phẩm</span>
+			     <button type="button" class="setting_on_read" role="button"></button>
+            </div>
+                </div>  
         </div>
     </div>
     
@@ -172,7 +174,6 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    
 			         <button type="button" class="back_back" role="button"></button>
                     <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Hướng dẫn sử dụng</span>
@@ -256,7 +257,6 @@
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
 			         <button type="button" class="back_back" role="button"></button>
-                    
                     <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Điều khoản sử dụng</span>
                 </div>

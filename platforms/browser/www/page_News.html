@@ -1,97 +1,109 @@
-<div ng-controller="page_News_Ctrl"> 
-    <div ng-class="cssListThread"> 
+<div ng-controller="page_News_Ctrl">
+    <div ng-class="cssListThread">
         <div ng-repeat="itemNews in dataListNews track by itemNews.Id">
-            <div ng-if="itemNews.HasThumb == 'Yes'" back-img="{{::itemNews.Thumb}}" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-click="showDataId(itemNews)" role="button"> 
+            <div ng-if="itemNews.HasThumb == 'Yes'" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-click="showDataId(itemNews)" role="button">
+                <div class="imgList" back-img="{{::itemNews.Thumb}}"></div>
                 <div ng-class="cssTitleList">
-                <span class="rutgon_text">{{::itemNews.Title}}</span>
-                <font size="2">{{::itemNews.Cat}} - {{::itemNews.Date}}</font>
-                </div> 
-            </div>   
-            <div ng-if="itemNews.HasThumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-click="showDataId(itemNews)" role="button"> 
-                <div style="width:100%; font-size:120px; color:#fff; text-align:center;">{{::itemNews.ThumbText}}</div>
+                    <div class="rutgon_text">{{::itemNews.Title}}</div>
+                    <div class="catandDate">
+                        <font size="2">{{::itemNews.Cat}} - {{::itemNews.Date}}</font>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="itemNews.HasThumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-click="showDataId(itemNews)" role="button">
+                <div class="imgList">{{::itemNews.ThumbText}}</div>
                 <div ng-class="cssTitleList">
-                <span class="rutgon_text">{{::itemNews.Title}}</span>
-                <font size="2">{{::itemNews.Cat}} - {{::itemNews.Date}}</font>
-                </div> 
+                    <div class="rutgon_text">{{::itemNews.Title}}</div>
+                    <div class="catandDate">
+                        <font size="2">{{::itemNews.Cat}} - {{::itemNews.Date}}</font>
+                    </div>
+                </div>
             </div>
         </div>
-        <div ng-show="noMoreItemsAvailable"><center>Bạn đã xem hết.. </center></div>
-    </div> 
-	<div id="hienBaiNews" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
-		<div ng-class="cssModal"> 
-            <div ng-repeat="datapdu in datapdu" ng-class="cssModalContent">  
+        <div ng-show="noMoreItemsAvailable">
+            <center>Bạn đã xem hết.. </center>
+        </div>
+    </div>
+    <div id="hienBaiNews" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-repeat="datapdu in datapdu" ng-class="cssModalContent">
                 <div class="scroller_content">
                     <div ng-class="cssFontSize"><b>{{::datapdu.Title}}</b></div>
                     <div class="baiviet_tieude_content">
                         <div class="baiviet_tieude_title">
-                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-touchend="saveToSQLite(datapdu);"></i> 
-                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-touchend="deleteToSQLite(datapdu);"></i> 
-                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i> 
+                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-touchend="saveToSQLite(datapdu);"></i>
+                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-touchend="deleteToSQLite(datapdu);"></i>
+                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
                         </div>
                         <div class="baiviet_tieude_info">
                             <div class="font1">
-                                {{::datapdu.Author}}<br>
-                                <font size="2" color="gray" >{{::datapdu.Date}}</font>
-                            </div>  
+                                {{::datapdu.Author}}
+                                <br>
+                                <font size="2" color="gray">{{::datapdu.Date}}</font>
+                            </div>
                         </div>
                         <div class="baiviet_tieude_cleared"></div>
-                    </div> 
+                    </div>
                     <div ng-class="cssFontSize" compile="::datapdu.Content"></div>
                 </div>
             </div>
-            <div ng-class="cssModeHeader"> 
+            <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    
-                    <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();" ></button> 
+                    <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline"  data-target="#caiDatKhiXemNews" data-toggle="modal"  role="button"></button>
-                </div> 
-            </div> 
-		</div>
-	</div>
-	<div id="caiDatKhiXemNews" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
-		<div ng-class="cssModal">
-		<div ng-class="cssModalHeaderSetting">
-				<button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
-				<span class="modal-title">Cài đặt</span>
-			</div>
-			<div class="setting_content">
-				<div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13">Cỡ chữ</span></div>
-				<div class="setting_info">
-                    <div class="sizefont_buttons" class="text-center"> 
-                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);"> 
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemNews" data-toggle="modal" role="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="slideHinhNews" class="modal fade" tabindex="-1" role="dialog">
+        <div class="scroller_img">
+            <img class="center" ng-src="{{urlImgageZoom}}">
+        </div>
+        <button type="button" class="closeImg ion-ios-close-outline" data-dismiss="modal"></button>
+    </div>
+    <div id="caiDatKhiXemNews" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div ng-class="cssModal">
+            <div ng-class="cssModalHeaderSetting">
+                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <span class="modal-title">Cài đặt</span>
+            </div>
+            <div class="setting_content">
+                <div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13">Cỡ chữ</span></div>
+                <div class="setting_info">
+                    <div class="sizefont_buttons" class="text-center">
+                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);">
                             <span class="size-11">1</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);"> 
+                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);">
                             <span class="size-13">2</span>
-                        </a> 
-                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);"> 
+                        </a>
+                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);">
                             <span class="size-17">3</span>
-                        </a> 
-                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);"> 
+                        </a>
+                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);">
                             <span class="size-22">4</span>
-                        </a> 
+                        </a>
                     </div>
-				</div> 
-				<div class="setting_cleared"></div>
-				<div class="setting_title">
-					<i span class="ion-ios-cloudy-night-outline size-35"></i>
-					<span class="size-13"> Ban đêm</span>
-				</div>
-				<div ng-repeat="settingData in settingData" class="setting_info" > 
-					<div class="setting_info_toogle" >
-						  <input type="checkbox" name="checkbox1" id="checkbox3" class="ios-toggle" ng-model="settingData.nightMode"/>
-						  <label for="checkbox3" class="checkbox-label" ></label> 
-					</div> 
-				</div> 
-				<div class="setting_cleared"></div>
-			</div>
-		</div>
-	</div>
-	<div ng-class="cssModeHeader"> 
-		<div ng-class="cssModeModalHeader">
-            
-			<span class="modal-title">Tin mới</span> 
-		</div>     
-	</div>  
-</div> 
+                </div>
+                <div class="setting_cleared"></div>
+                <div class="setting_title">
+                    <i span class="ion-ios-cloudy-night-outline size-35"></i>
+                    <span class="size-13"> Ban đêm</span>
+                </div>
+                <div ng-repeat="settingData in settingData" class="setting_info">
+                    <div class="setting_info_toogle">
+                        <input type="checkbox" name="checkbox1" id="checkbox3" class="ios-toggle" ng-model="settingData.nightMode" />
+                        <label for="checkbox3" class="checkbox-label"></label>
+                    </div>
+                </div>
+                <div class="setting_cleared"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="cssModeHeader">
+        <div ng-class="cssModeModalHeader">
+            <span class="modal-title">Tin mới</span>
+        </div>
+    </div>
+</div>

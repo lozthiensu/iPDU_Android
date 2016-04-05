@@ -111,10 +111,10 @@ angular.module('pduNewsApp')
             "nightMode":    $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.style(1);
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
-            $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet-night";
+            $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet_qldt-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
             $rootScope.cssModalContent = "xem_baiviet_bogoc_modal  xem_baiviet_bogoc_modal-night";
             $rootScope.cssModeHeader = "menu_header              menu_header-night";
@@ -124,8 +124,9 @@ angular.module('pduNewsApp')
             $rootScope.cssloginBoxQldt = "loginbox_qldt            loginbox_qldt-night";
             $rootScope.cssdkHocPhan = "scroller_dkhocphan            scroller_dkhocphan-night";
             $rootScope.cssModeFooter            = "menu_footer              menu_footer-night";
+            $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
         } else {
-            $cordovaStatusbar.style(0);
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt";
@@ -138,6 +139,7 @@ angular.module('pduNewsApp')
             $rootScope.cssloginBoxQldt = "loginbox_qldt";
             $rootScope.cssdkHocPhan = "scroller_dkhocphan";
             $rootScope.cssModeFooter            = "menu_footer";
+            $rootScope.cssItemSelect            = "itemSelect";
         }
     };
 
