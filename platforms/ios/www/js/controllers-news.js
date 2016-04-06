@@ -68,7 +68,7 @@ angular.module('pduNewsApp')
             imgThumb = JSON.stringify($scope.saved[0].Url);
         $scope.tempListId = $rootScope.listIDSaved;
         $scope.tempListId.push({
-            Id: idBaiViet.Id + 'home'
+            Id: idBaiViet.Id + 'news'
         });
         localStorageService.set('listIDSaved', $scope.tempListId);
         $cordovaSQLite.execute($rootScope.db, "INSERT INTO sqlSave (baiviet_id, baiviet_title, baiviet_date, baiviet_author, baiviet_content, baiviet_img, baiviet_thumb) VALUES (?,?,?,?,?,?,?)", [$scope.datapdu[0].Id + 'news', $scope.datapdu[0].Title, $scope.datapdu[0].Date, $scope.datapdu[0].Author, textAfter, imgList, imgThumb]).then(function (res) {}, function (err) {
@@ -110,7 +110,7 @@ angular.module('pduNewsApp')
         $scope.tonTai = false;
         var n = $scope.tempListId.length;
         for (var i = 0; i < n; i++) {
-            if (idBaiViet.Id + 'home' === $scope.tempListId[i].Id) {
+            if (idBaiViet.Id + 'news' === $scope.tempListId[i].Id) {
                 $scope.tonTai = true;
                 break;
             }
