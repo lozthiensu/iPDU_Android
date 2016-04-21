@@ -1,9 +1,16 @@
 <div ng-controller="page_Contact_Ctrl">
     <div ng-class="cssListThread">  
         <div ng-repeat="datax in listContact | filter: searchMajor">
-            <div ng-class="cssLinkMenu">
-                <div class="hoctap_text">Tên<br>Số điện thoại<br>Khoa</div>
-                <div class="hoctap_data">{{::datax.name}}<br>{{::datax.phone}}<br>{{::datax.khoa}}</div>
+            <div ng-class="cssLinkMenu"> 
+                <div class="hoctap_text">Tên</div>
+                <div class="hoctap_data">{{::datax.name}}</div>
+                <div class="clear_both"></div>
+                <div class="hoctap_text">Số điện thoại</div>
+                <div class="hoctap_data">{{::datax.phone}}</div>
+                <div class="clear_both"></div>
+                <div class="hoctap_text1">Khoa</div>
+                <div class="hoctap_data1">{{::datax.khoa}}</div>
+                <div class="clear_both"></div>
             </div>
             <div class="clear_both"></div>  
         </div>  
@@ -17,7 +24,7 @@
 					<h4 class="modal-title">Chọn thể loại</h4>
 				</div>
 				<div ng-repeat="daChon in theLoaiList track by daChon.id">
-					<div class="itemSelect" ng-click="chonTheLoai(daChon)" data-dismiss="modal">{{::daChon.name}}
+					<div ng-class="cssItemSelect" ng-click="chonTheLoai(daChon)" data-dismiss="modal">{{::daChon.name}}
 					</div>
 				</div> 
 			</div>
@@ -25,6 +32,7 @@
 	</div>    
 	<div ng-class="cssModeHeader"> 
 		<div ng-class="cssModeModalHeader">
+            <div class="paddingheader"></div> 
 			<button type="button" class="back_back" role="button"></button> 
             <span class="modal-title">Danh bạ giáo viên</span> 
 			<button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiContact" data-toggle="modal" role="button"></button> 

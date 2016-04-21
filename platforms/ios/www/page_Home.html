@@ -1,10 +1,11 @@
 <div ng-controller="page_Home_Ctrl">
+    <div ng-http-loader template="loading.html"></div>
     <div ng-class="cssListThread">
         <div infinite-scroll='getDataFromSever()' infinite-scroll-distance='2' infinite-scroll-parent='true'>
             <div ng-repeat="itemHome in dataListHome track by itemHome.Id">
-                <div ng-if="itemHome.HasThumb == 'Yes'" class="list_ban_khach_repeat" data-target="#hienBaiHome" data-toggle="modal" ng-click="showDataId(itemHome)" role="button">
+                <div ng-if="itemHome.HasThumb == 'Yes'" class="list_ban_khach_repeat" data-target="#hienBaiHome" data-toggle="modal" ng-tap="showDataId(itemHome)" role="button">
                     <div class="catandDate">
-                        <font size="2">{{::itemHome.Cat}} - {{::itemHome.Date}}</font>
+                        <div class="rutgon_textdate"><font size="2">{{::itemHome.Cat}} - {{::itemHome.Date}}</font></div>
                     </div>
                     <div class="imgList" back-img="{{::itemHome.Thumb}}"></div>
                     <div ng-class="cssTitleList">
@@ -26,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div id="hienBaiHome" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
+    <div id="hienBaiHome" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">        <div ng-http-loader template="loading.html"></div>
         <div ng-class="cssModal">
             <div ng-repeat="datapdu in datapdu" ng-class="cssModalContent">
                 <div class="scroller_content">
@@ -51,6 +52,7 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
+                    <div class="paddingheader"></div>
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
                     <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXem" data-toggle="modal" role="button"></button>
@@ -58,11 +60,15 @@
             </div>
         </div>
     </div>
-    <div id="slideHinh" class="modal fade" tabindex="-1" role="dialog">
+    <div id="slideHinhHome" class="modal fade" tabindex="-1" role="dialog">
+        <div ng-class="cssModalHeaderSetting">
+            <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+            <span class="modal-title">Cài đặt</span>
+        </div>
+        <div ng-class="cssModalContent">
         <div class="scroller_img">
             <img class="center" ng-src="{{urlImgageZoom}}">
-        </div>
-        <button type="button" class="closeImg ion-ios-close-outline" data-dismiss="modal"></button>
+        </div></div>
     </div>
     <div id="caiDatKhiXem" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
@@ -119,6 +125,7 @@
     </div>
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
+            <div class="paddingheader"></div>
             <button type="button" class="back_back" role="button"></button>
             <span class="modal-title">Trang chủ</span>
             <button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiHome" data-toggle="modal" role="button"></button>

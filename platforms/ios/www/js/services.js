@@ -1,11 +1,11 @@
 angular.module('pduNewsApp')
 .factory('pduService', function($http) {
-    var baseUrl = 'http://ipdu.itpdu.net/';
+    var baseUrl = 'http://acm.svpdu.net/';
     return {
         
         //Get notification from server
         getNotification: function (){
-            return $http.get('http://demo-kakalot.rhcloud.com/getNotification.php', {timeout: 1500}); 
+            return $http.get('http://demo-kakalot.rhcloud.com/getNotification.php'); 
         },
         
         
@@ -15,6 +15,15 @@ angular.module('pduNewsApp')
         },
         Home_getId: function (Id){
             return $http.get(baseUrl+'Home_select_id.php?id='+Id); 
+        },
+        
+        
+        //Process for Cntt
+        Cntt_getPage: function (pageId, theLoai){
+            return $http.get(baseUrl+'Cntt_select_page.php?page='+pageId+'&theloai='+theLoai); 
+        },
+        Cntt_getId: function (Id){
+            return $http.get(baseUrl+'Cntt_select_id.php?id='+Id); 
         },
         
         

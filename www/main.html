@@ -24,43 +24,45 @@
     <div ng-include="'page_News.html'" ng-hide="!isCurrentIndex(0)" ng-class="slideMain"></div>
     <div ng-include="'page_Qldt.html'" ng-hide="!isCurrentIndex(1)" ng-class="slideMain"></div>
     <div ng-include="'page_Home.html'" ng-hide="!isCurrentIndex(2)" ng-class="slideMain"></div>
-    <div ng-include="'page_Saved.html'" ng-hide="!isCurrentIndex(4)" ng-class="slideMain"></div>
-    <div ng-include="'page_Contact.html'" ng-hide="!isCurrentIndex(5)" ng-class="slideMain"></div>
+    <div ng-include="'page_Saved.html'" ng-if="isCurrentIndex(4)" ng-class="slideMain"></div>
+    <div ng-include="'page_Contact.html'" ng-if="isCurrentIndex(5)" ng-class="slideMain"></div>
+    <div ng-include="'page_Cntt.html'" ng-if="isCurrentIndex(6)" ng-class="slideMain"></div>
     <div ng-hide="!isCurrentIndex(3)" ng-class="slideMain">
         <div ng-class="cssMenuOther">
             <div ng-click="setCurrentIndex(4);readListFromSQLite();">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-folder size-24"></i> Trang đã lưu</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-folder size-24 canhleicon"></div> Trang đã lưu</div>
             </div>
             <div ng-click="setCurrentIndex(5);">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-bookmarks size-24"></i> Danh bạ giáo viên</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-bookmarks size-24 canhleicon"></div> Danh bạ giáo viên</div>
             </div>
-            <div ng-href="#/Home_list">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-monitor size-24"></i> Khoa CNTT</div>
-            </div>
-            <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-cog size-24"></i> Khoa Kỹ Thuật Công Nghệ</div>
+            <div ng-click="setCurrentIndex(6);">
+                <div ng-class="cssLinkMenu"><div class="ion-ios-monitor size-24 canhleicon"></div> Khoa CNTT</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-people size-24"></i> Khoa Ngoại Ngữ</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-cog size-24 canhleicon"></div> Khoa Kỹ Thuật Công Nghệ</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-pie size-24"></i> Khoa Kinh Tế</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-people size-24 canhleicon"></div> Khoa Ngoại Ngữ</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-flask size-24"></i> Khoa Cơ Bản</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-pie size-24 canhleicon"></div> Khoa Kinh Tế</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-flower size-24"></i> Khoa Sư Phạm Tự Nhiên</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-flask size-24 canhleicon"></div> Khoa Cơ Bản</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-body size-24"></i> Khoa Sư Phạm Xã Hội</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-flower size-24 canhleicon"></div> Khoa Sư Phạm Tự Nhiên</div>
             </div>
             <div ng-href="#/Main">
-                <div ng-class="cssLinkMenu"><i class="ion-ios-briefcase size-24"></i> Khoa Lý Luận Chính Trị</div>
+                <div ng-class="cssLinkMenu"><div class="ion-ios-body size-24 canhleicon"></div> Khoa Sư Phạm Xã Hội</div>
+            </div>
+            <div ng-href="#/Main">
+                <div ng-class="cssLinkMenu"><div class="ion-ios-briefcase size-24 canhleicon"></div> Khoa Lý Luận Chính Trị</div>
             </div>
         </div>
         <div ng-class="cssModeHeader">
             <div ng-class="cssModeModalHeader">
+                <div class="paddingheader">  </div>
 			    <button type="button" class="back_back" role="button"></button>
                 <span class="modal-title">Danh sách trang</span>
                 <button type="button" class="setting_on_read ion-ios-information-outline" data-target="#hienInfoApp" data-toggle="modal" ng-click="getTrangThaiModal();" role="button"></button>
@@ -75,13 +77,13 @@
             <div ng-class="cssModalContent">
                 <div ng-class="cssMenuOther">
                     <div ng-class="cssLinkMenu">
-                        <div class="version_text"><i class="size-24"></i>Phiên bản hiện tại</div>
-                        <div class="version_data"><i class="size-24"></i>0.1 Beta</div>
+                        <div class="version_text"><i class="size-24"></i><div class="canhletrai">Phiên bản hiện tại</div></div>
+                        <div class="version_data"><i class="size-24"></i><div class="canhlephai">0.1 Beta</div></div>
                     </div>
                     <div class="clear_both"></div>
-                    <div ng-class="cssLinkMenu" data-target="#huongDan" data-toggle="modal"><i class="size-24"></i>Hướng dẫn sử dụng</div>
-                    <div ng-class="cssLinkMenu" data-target="#dieuKhoan" data-toggle="modal"><i class="size-24"></i>Điều khoản sử dụng</div>
-                    <a style="cursor: pointer; text-decoration:none;" href="https://www.facebook.com/My.Name.Is.Kakalot"><div ng-class="cssLinkMenu"><i class="size-24"></i>Liên hệ Facebook</div></a>
+                    <div ng-class="cssLinkMenu" data-target="#huongDan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Hướng dẫn sử dụng</div></div>
+                    <div ng-class="cssLinkMenu" data-target="#dieuKhoan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Điều khoản sử dụng</div></div>
+                    <a style="cursor: pointer; text-decoration:none;"><div ng-class="cssLinkMenu" ng-tap='openWeb("http://fb.com/My.Name.Is.Kakalot")' ><i class="size-24"></i><div class="canhletrai" ng-tap='openWeb("http://fb.com/My.Name.Is.Kakalot")'>Liên hệ Facebook</div></div></a>
                     <div class="last_info">
                         <img src="img\logo.png"><br>
                         Sản phẩm nghiên cứu khoa học<br>Khoa Công Nghệ Thông Tin<br> 99 Hùng Vương - TP Quảng Ngãi <br><br>&copy2016 Đại học Phạm Văn Đồng</div>
@@ -89,6 +91,7 @@
             </div>
 	            <div ng-class="cssModeHeader"> 
             <div ng-class="cssModeModalHeader">
+                <div class="paddingheader">  </div> 
                 <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
                 <span class="modal-title">Thông tin sản phẩm</span>
 			     <button type="button" class="setting_on_read" role="button"></button>
@@ -164,16 +167,12 @@
                                 </tr>
                             </table>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
+                    <div class="paddingheader">  </div>
 			         <button type="button" class="back_back" role="button"></button>
                     <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Hướng dẫn sử dụng</span>
@@ -257,6 +256,7 @@
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
 			         <button type="button" class="back_back" role="button"></button>
+                    <div class="paddingheader">  </div>
                     <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Điều khoản sử dụng</span>
                 </div>

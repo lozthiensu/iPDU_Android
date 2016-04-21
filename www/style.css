@@ -14,20 +14,10 @@
     user-select: none;
 }
 
-
-/*4  text icon footer */
-span.menu4icontitle{
-	font-size: 11px;
-	margin-top:-5px;
-	margin-bottom:2px;
-}
-
-
 /*Thanh hien hinh anh khi xem  bai viet*/
 .scroller_img {
     position: relative;
-	height: 100%;
-    background-color: #000;
+	height: calc(100vh - 45px); 
     overflow-x: scroll;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -35,6 +25,12 @@ span.menu4icontitle{
 img.center {
     display:block;
     margin:auto;
+}
+/*4  text icon footer */
+span.menu4icontitle{
+	font-size: 11px;
+	margin-top:-5px;
+	margin-bottom:2px;
 }
 
 
@@ -61,7 +57,7 @@ img.center {
     -webkit-overflow-scrolling: touch; 
 	height: 100vh;
 }.list_baiviet{
-	padding-top:70px;
+	padding-top: 80px;
 	background-color: #fff !important;
 	padding-bottom:60px; 
     overflow-y: scroll;
@@ -78,7 +74,7 @@ img.center {
 .list_ban_khach_repeat { 
 	width: 100%;
     height: 80px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     position: relative;
 }
 .imgList{
@@ -95,25 +91,26 @@ img.center {
 
 /*Hien thi ten list bai viet*/
 .title_desk{    
-    padding-left: 7px;
 	font-size:13px;
     position: absolute;
     bottom: 0;
-    left: 115px;
-    width: calc(100vw - 130px); 
+    margin-left: 110px;
+    width: calc(100vw - 125px); 
 	color:#000;
     height: 80px;
     margin-right: 15px;
-    padding-top: 5px;
+    padding-top: 8px;
     
 }.title_desk-night{     
 	color:#B2B2B2;  
 }
 .catandDate{
-    margin-top: 55px ; 
-    margin-left: 120px; 
+    margin-top: 52px ; 
+    margin-left: 110px; 
     padding-top: 0px;
     position: absolute;
+    width: calc(100vw - 125px); 
+    color:#808080;  
 }
 
 
@@ -124,6 +121,12 @@ img.center {
    text-overflow: ellipsis;
    display: -webkit-box; 
    -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}.rutgon_textdate{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1; /* number of lines to show */
    -webkit-box-orient: vertical;
 } 
 
@@ -193,7 +196,7 @@ img.center {
 
 /* Định dạng header menu*/
 .menu_header{
-	color:#fff; 
+	color:#000; 
 	text-align:center;
 	position:fixed;  
 	width: 100%; 
@@ -202,11 +205,12 @@ img.center {
 	-webkit-backface-visibility: hidden;
 	top: 0;   
 	left: 0;
-    height: 45px; 
-    background-color: #2dbe60 !important;  
+    height: 65px; 
+    background: rgba(250,250,250,.7);  
+    -webkit-backdrop-filter: brightness(1.5) blur(15px);
 }.menu_header-night{
 	color: #FAFAFA;
-    background-color: #0A0A0A !important; 
+    background: rgba(10,10,10,.9);
 }
 
 
@@ -219,12 +223,13 @@ img.center {
 	-webkit-backface-visibility: hidden;
     bottom: 0; 
     z-index: 100;
-	border-top:#9E9E9E solid 1px !important;
-    background-color: #FAFAFA !important;    
+	border-top:#9E9E9E solid 0.5px !important;
+    background: rgba(250,250,250,.7) !important;  
+    -webkit-backdrop-filter: brightness(1.5) blur(15px);
 }.menu_footer-night{
 	color:#2dbe60;      
-    background-color: #0A0A0A !important;
-	border-top:#1a1a1a solid 1px !important;  
+    background: rgba(10,10,10,.9) !important;
+	border-top:#1a1a1a solid 0.5px !important; 
 }
 
 /*Dinh dang cho footer*/
@@ -287,6 +292,7 @@ img.center {
 }
 
 
+
 /*Text center qldt*/
 .text_center{ 
       height: 30px;
@@ -319,58 +325,55 @@ img.center {
 	width:100%;
 	color:	#000; 
 	text-align:left;  
-	padding: 15px;
+	padding: 20px;
 	margin-top:0px;
+    position: relative;
+    text-indent: 25px;
 /*    border-bottom: 1px solid #999999 !important;*/
 }
 .link_menu-night {
 	color: #FAFAFA;
 /*    border-bottom: 1px solid #212121 !important; */
 }
-.link_menu-night:last-child {
-    border-bottom: none;  
-}
-.link_menu:last-child {
-    border-bottom: none; 
+.canhleicon{
+    position: absolute;
+    margin-top: -4px;
+    margin-left: -55px;
 }
 
 
 /* Thanh menu header */
 .modal-header {
-/*	border-bottom:#9E9E9E solid 1px;*/
+	border-bottom: #9E9E9E solid 0.5px !important;
 	text-align:center;   
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt;
-    height: 45px;
-    -webkit-box-shadow: 0px 4px 4px 0px rgba(166, 166, 166, 0.5);
-    -moz-box-shadow:    0px 4px 4px 0px rgba(166, 166, 166, 0.5);
-    box-shadow:         0px 4px 4px 0px rgba(166, 166, 166, 0.5);
+    height: 65px;
+
 }   
 .modal-header-night {
 	color: #FAFAFA !important;
-    -webkit-box-shadow: 0px 4px 4px 0px rgba(25, 25, 25, 0.5);
-    -moz-box-shadow:    0px 4px 4px 0px rgba(25, 25, 25, 0.5);
-    box-shadow:         0px 4px 4px 0px rgba(25, 25, 25, 0.5);
+	border-bottom: #1a1a1a solid 0.5px !important;
 }
 
 
 /*Thanh menu header cai dat*/ 
 .modal-header-setting {
-	border-top:#9E9E9E solid 1px;
-	border-bottom:#9E9E9E solid 1px;
+	border-top:#9E9E9E solid 0.5px !important;
+	border-bottom:#9E9E9E solid 0.5px !important;
     padding: 7px 20px 7.5px 20px;
 	text-align:center;  
-	color:	#fff;
+	color:	#000;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt;
     height: 45px;
-	background-color: #2dbe60 !important; 
+	background-color: #fafafa !important; 
 
 }.modal-header-setting-night { 
 	color: #FAFAFA !important;
 	background-color: #0A0A0A !important; 
-	border-top:#1a1a1a solid 1px;
-	border-bottom:#1a1a1a solid 1px;
+	border-top:#1a1a1a solid 0.5px !important;
+	border-bottom:#1a1a1a solid 0.5px !important;
 }  
 
 
@@ -415,20 +418,20 @@ img.center {
 
 /* Ding dang menu chon the loai bai viet */
 .modal-header-theloai {
-	border-top:#9E9E9E solid 1px !important; 
+	border-top:#9E9E9E solid 0.5px !important;
+	border-bottom:#9E9E9E solid 0.5px !important;
 	padding: 12px 7px 0px 20px;  
 	height:50px;
 	text-align:center;
 	margin-top:30%;   
-	color:	#fff;
-    background-color: #2dbe60;
-	border-bottom:#9E9E9E solid 1px !important; 
+	color:	#000;
+    background-color: #fafafa;
 } 
 .modal-header-theloai-night {
 	color: #FAFAFA; 
     background-color: #0A0A0A;
-	border-top:#1a1a1a solid 1px !important; 
-	border-bottom:#1a1a1a solid 1px !important; 
+	border-top:#1a1a1a solid 0.5px !important;
+	border-bottom:#1a1a1a solid 0.5px !important;
 }
 
 
@@ -441,7 +444,7 @@ img.center {
   outline: 0;
 } 
 .modal-content-theloai-night {
-  background-color: #0d0d0d !important;
+background-color: #0d0d0d !important;
   color: #B2B2B2;
 }
 
@@ -451,25 +454,33 @@ img.center {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:14pt; 
 	text-align:center; 
-	border-bottom: #9E9E9E solid 1px !important; 
+	border-bottom: #9E9E9E solid 0.5px !important; 
 	padding:15px; 
 }.itemSelect-night {
-	border-bottom:#1a1a1a solid 1px !important; 
-} 
+	border-bottom:#1a1a1a solid 0.5px !important; 
+}
 
 
 /*Login box quan ly dao tao*/
 .loginbox_qldt{ 
 	color:	#000;
     position:fixed;
-    top:45px;
+    top:65px;
     width:100%;
-    z-index:100; 
-    background-color: #fff;   
+    z-index:100;
+    background-color: #fff;
+/*
+    background: rgba(221, 224, 231,.85);  
+    -webkit-backdrop-filter: brightness(1.5) blur(15px);
+*/
 }
 .loginbox_qldt-night{
 	color: #FAFAFA; 
-    background-color: #0a0a0a;   
+    background-color: #0d0d0d;
+/*
+    background: rgba(0,0,0,.9);  
+    -webkit-backdrop-filter: brightness(1.5) blur(15px);
+*/
 }
 
 
@@ -523,11 +534,31 @@ img.center {
     left:0;
     text-align: left;
     float:left; 
+    padding: 5px 0 5px 0;
+    text-indent: 0px;
 }
 .hoctap_data{
+    border-bottom: 1px solid #262626;
     right:0;
     text-align: right; 
     color: #B6B6B6;
+    padding: 5px 0 5px 0;
+    text-indent: 0px;
+}
+.hoctap_text1{
+    width: 35%;
+    left:0;
+    text-align: left;
+    float:left;
+    padding: 5px 0 5px 0;
+    text-indent: 0px;
+}
+.hoctap_data1{
+    padding: 5px 0 5px 0;
+    right:0;
+    text-align: right; 
+    color: #B6B6B6;
+    text-indent: 0px;
 }
 
 
@@ -542,6 +573,12 @@ img.center {
     right:0;
     text-align: right; 
     color: #B6B6B6;
+}
+.canhletrai{
+    text-indent: -15px;
+}
+.canhlephai{
+    text-indent: 0px;
 }
 .info_div{
     left:0;
@@ -616,7 +653,7 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 55px 0 20px 0;
+    padding: 75px 0 20px 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -653,16 +690,16 @@ i {
 
 /* Định dạng lại box login*/
 .tieude_login {  
-	margin-top:  -60px; 
-	margin-left: 85px; 
+	margin-top:  -55px; 
+	margin-left: 90px; 
 	display: block; 
 	width: auto;   
 }.icon_tieude_login {  
 	border: #F0F4F7 solid 8px !important; 
-    margin-left: 10px;
+    margin-left: 15px;
     max-width: 65px;
     max-height: 65x;
-	margin-top: 10px; 
+	margin-top: 15px; 
     border-radius: 50%;	
 }
 
@@ -670,6 +707,7 @@ i {
 /*Dinh dang xem noi dung box login*/
 .xem_noidung { 
 	padding-top: 15px;
+    border-bottom: 0.5px solid #9E9E9E;
 }
 
 
@@ -678,22 +716,54 @@ i {
 	height:40px;
 	width: 100%;
 	border:none;
-	margin-top: 10px;  
-	text-indent: 10px;
+	margin: 15px 15px 0 15px;  
+	text-indent: 10px;	
     color: #2dbe60;
     font-weight: bold;
-    border-bottom: 1px solid #2dbe60;
+/*    border-bottom: 0.5px solid #2dbe60;*/
+    border-left: 5px solid #2dbe60;
+    border-radius: 8px;
+
 }
 .button_login:focus, .input_login:focus{
     outline: 0;
 }.button_login {
 	background-color: #2dbe60;
 	height:40px;
-	width: 100%;
+	width: calc(100vw - 30px);
 	border:none;
-	margin-top: 10px;  
-    border-radius: 8px;	 
+    border-radius: 8px;
+	margin: 15px 15px 15px 15px;  
+}
+.button_hp:focus, .input_login:focus{
+    outline: 0;
+}.button_hp {
+	background-color: #2dbe60;
+	height:40px;
+	width: auto;
+	border:none;
+	margin-left : 10px;  
+	margin-top : 10px; 
+    border-radius: 8px;
+    display: inline-block;
 } 
+.button_ca:focus, .input_login:focus{
+    outline: 0;
+}.button_ca {
+	background-color: #F44336;
+	height:40px;
+	width: auto;
+	border:none;
+	margin-left : 10px;
+	margin-top : 10px;  
+    border-radius: 8px;
+    display: inline-block;
+}
+.nutdangki{
+    margin: 0 auto;
+    display: inline-block;
+    overflow: hidden;
+}
 
 
 /*Toggles cai dat*/

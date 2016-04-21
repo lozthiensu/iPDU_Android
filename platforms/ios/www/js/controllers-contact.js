@@ -155,6 +155,7 @@ angular.module('pduNewsApp')
     //Set new search by major value
     $scope.chonTheLoai = function (daChon) {
         $scope.searchMajor = daChon.id;
+        delete daChon;
     };
 
 

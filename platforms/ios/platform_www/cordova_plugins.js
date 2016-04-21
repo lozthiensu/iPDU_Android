@@ -254,23 +254,59 @@ module.exports = [
             "cordova.plugins.notification.local",
             "plugin.notification.local"
         ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Core",
+        "pluginId": "de.appplant.cordova.plugin.local-notification",
+        "clobbers": [
+            "cordova.plugins.notification.local.core",
+            "plugin.notification.local.core"
+        ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Util",
+        "pluginId": "de.appplant.cordova.plugin.local-notification",
+        "merges": [
+            "cordova.plugins.notification.local.core",
+            "plugin.notification.local.core"
+        ]
+    },
+    {
+        "file": "plugins/org.pbernasconi.progressindicator/www/progressIndicator.js",
+        "id": "org.pbernasconi.progressindicator.ProgressIndicator",
+        "pluginId": "org.pbernasconi.progressindicator",
+        "clobbers": [
+            "ProgressIndicator"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "pluginId": "cordova-plugin-file-opener2",
+        "clobbers": [
+            "cordova.plugins.fileOpener2"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-crosswalk-webview": "1.6.1",
+    "cordova-plugin-app-event": "1.2.0",
     "cordova-plugin-device": "1.1.1",
     "cordova-plugin-dialogs": "1.2.0",
     "cordova-plugin-file": "4.1.1",
     "cordova-plugin-file-transfer": "1.5.0",
-    "cordova-plugin-inappbrowser": "1.3.0",
+    "cordova-plugin-inappbrowser": "1.2.1",
     "cordova-plugin-splashscreen": "3.2.2-dev",
     "cordova-plugin-statusbar": "2.1.1",
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-socialsharing": "5.0.12-dev",
     "cordova-sqlite-storage": "0.8.4-dev",
-    "de.appplant.cordova.plugin.local-notification": "0.8.1"
+    "de.appplant.cordova.plugin.local-notification": "0.8.4",
+    "org.pbernasconi.progressindicator": "1.1.0",
+    "cordova-plugin-file-opener2": "2.0.2"
 }
 // BOTTOM OF METADATA
 });

@@ -7,20 +7,20 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
@@ -28,22 +28,27 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
         "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
         },
-        "cordova-plugin-crosswalk-webview": {
+        "org.pbernasconi.progressindicator": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-file-opener2": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        }
-    }
+    "dependent_plugins": {}
 }

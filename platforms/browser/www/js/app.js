@@ -1,4 +1,4 @@
-angular.module('pduNewsApp', ['ui.router', 'LocalStorageModule', 'ngCordova', 'infinite-scroll', 'ngTouch', 'ngIOS9UIWebViewPatch'])
+angular.module('pduNewsApp', ['ui.router', 'LocalStorageModule', 'ngCordova', 'infinite-scroll', 'ngTouch'])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('main', {
@@ -30,6 +30,11 @@ angular.module('pduNewsApp', ['ui.router', 'LocalStorageModule', 'ngCordova', 'i
             url: '/page_News',
             templateUrl: 'page_News.html',
             controller: 'page_News_Ctrl'
+        }) 
+        .state('page_Cntt', {
+            url: '/page_Cntt',
+            templateUrl: 'page_Cntt.html',
+            controller: 'page_Cntt_Ctrl'
         }) 
          ;
     $urlRouterProvider.otherwise('/main');

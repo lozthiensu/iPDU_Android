@@ -1,6 +1,12 @@
 angular.module('pduNewsApp')
 .controller('main_Ctrl', function($scope, pduService, $rootScope,$timeout, localStorageService, $cordovaSQLite, $cordovaStatusbar, $cordovaLocalNotification, $cordovaDialogs, $interval, $cordovaInAppBrowser) { 
-
+    
+    
+    //Open link from this view
+    $scope.openWeb = function(url){
+        $cordovaInAppBrowser.open(url, '_system');
+    };
+    
     
     //Load data setting when main loading
     $rootScope.settingData = localStorageService.get('settingData');
@@ -67,24 +73,33 @@ angular.module('pduNewsApp')
                         $cordovaLocalNotification.schedule({
                             id: $rootScope.notificationSaved[0].Session,
                             title: $scope.notificationFromSever.Title,
-                            text: $scope.notificationFromSever.Message,
-                            data: {
-                              customProperty: 'custom value'
-                            },
+                            text: $scope.notificationFromSever.Message
                         }).then(function (result) {
                         });
                         $cordovaDialogs.alert($scope.notificationFromSever.Message, $scope.notificationFromSever.Title); 
                     }
                 }
+                delete $scope.notificationFromSever; delete $scope.calcSession; delete $scope.soundPlay;
+                delete dataSession;
 			});  
     };
+    $scope.autoRefresh();
+    $scope.countDieInterval = 0;
     $scope.intervalPromise = $interval(function(){
-          $scope.autoRefresh();
-    }, 5000);
-    //$scope.autoRefresh();
+        $scope.countDieInterval++;
+        if($scope.countDieInterval == 10){
+            $interval.cancel($scope.intervalPromise);
+            $scope.intervalPromiseCon = $interval(function(){
+                $scope.countDieInterval++;
+                $scope.autoRefresh();
+            }, 90000);
+        }
+        $scope.autoRefresh();
+    }, 20000);
     
- 
-	$scope.currentIndex = 0;      //Set current index tab = idTad was saved
+    
+    //Set current index tab = idTad was saved
+	$scope.currentIndex = 0;      
 	//Set new current index tab & write to localstorage
 	$scope.setCurrentIndex = function (index) {
 		$scope.currentIndex = index; 

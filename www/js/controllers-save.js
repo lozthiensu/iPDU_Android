@@ -1,7 +1,12 @@
 angular.module('pduNewsApp')
-.controller('page_Saved_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar) {
+.controller('page_Saved_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaInAppBrowser) {
 
-
+    
+    $scope.openWeb = function(url){
+        $cordovaInAppBrowser.open(url, '_system');
+    };
+    
+    
     //Get list id thread saved
     $rootScope.listIDSaved = localStorageService.get('listIDSaved');
     if (!$rootScope.listIDSaved) {
@@ -67,7 +72,7 @@ angular.module('pduNewsApp')
             , "nightMode": $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.styleHex('#0A0A0A');
+            $cordovaStatusbar.style(1);
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
@@ -82,8 +87,9 @@ angular.module('pduNewsApp')
             $rootScope.cssMenuOther = "list_menu                list_menu-night";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet-night";
             $rootScope.cssScrollInfo = "scroller_info            scroller_info-night";
+            $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
         } else {
-            $cordovaStatusbar.styleHex('#2dbe60');
+            $cordovaStatusbar.style(0);
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssModeModalCat = "modal-header-theloai";
@@ -98,6 +104,7 @@ angular.module('pduNewsApp')
             $rootScope.cssMenuOther = "list_menu";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt";
             $rootScope.cssScrollInfo = "scroller_info";
+            $rootScope.cssItemSelect            = "itemSelect";	
         }
     };
 
@@ -107,9 +114,6 @@ angular.module('pduNewsApp')
         $scope.getTrangThaiModal();
         $cordovaSQLite.execute($rootScope.db, "SELECT * FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.baiviet_id]).then(function (res) {
             $scope.datapdu.push(res.rows.item(0));
-            var textBefore = $scope.datapdu[0].baiviet_content;
-            var textAfter = textBefore.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhSave' data-toggle='modal' ");
-            $scope.datapdu[0].baiviet_content = textAfter;
         });
     };
 
@@ -128,7 +132,7 @@ angular.module('pduNewsApp')
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
         var json = JSON.parse(data);
-        $scope.urlImgageZoom = json[url].Url; 
+        $cordovaInAppBrowser.open(json[url].Url, '_system'); 
     };
 
 

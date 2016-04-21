@@ -37,18 +37,11 @@ angular.module('pduNewsApp')
         $cordovaStatusbar.overlaysWebView(true); 
 
 
-        $rootScope.khoiTao = function(){
-            $timeout(function(){ 
-            }, 500);
+        $rootScope.khoiTao = function(){ 
             $rootScope.db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
             $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS sqlSave(baiviet_id text PRIMARY KEY, baiviet_title text, baiviet_date text, baiviet_author text, baiviet_content text, baiviet_img text, baiviet_thumb text)");
         };
-        $rootScope.khoiTaoRun = function(){
-            $timeout(function(){
-                $rootScope.khoiTao();
-            }, 500); 
-        };
-        $rootScope.khoiTaoRun();
+        $rootScope.khoiTao();
 
 
     }
