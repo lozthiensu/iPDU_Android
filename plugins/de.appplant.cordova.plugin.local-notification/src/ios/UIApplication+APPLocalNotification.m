@@ -62,10 +62,7 @@
         UIUserNotificationType types;
         UIUserNotificationSettings *settings;
 
-        settings = [[UIApplication sharedApplication]
-                    currentUserNotificationSettings];
-
-        types = settings.types|UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound;
+        types = UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound;
 
         settings = [UIUserNotificationSettings settingsForTypes:types
                                                      categories:nil];
@@ -159,7 +156,7 @@
  * @param id
  *      Notification ID
  */
-- (BOOL) localNotificationExist:(NSNumber*)id
+- (BOOL) localNotificationExist:(NSString*)id
 {
     return [self localNotificationWithId:id] != NULL;
 }
@@ -171,7 +168,7 @@
  * @param type
  *      Notification life cycle type
  */
-- (BOOL) localNotificationExist:(NSNumber*)id type:(APPLocalNotificationType)type
+- (BOOL) localNotificationExist:(NSString*)id type:(APPLocalNotificationType)type
 {
     return [self localNotificationWithId:id andType:type] != NULL;
 }
@@ -182,15 +179,13 @@
  * @param id
  *      Notification ID
  */
-- (UILocalNotification*) localNotificationWithId:(NSNumber*)id
+- (UILocalNotification*) localNotificationWithId:(NSString*)id
 {
     NSArray* notifications = self.localNotifications;
 
     for (UILocalNotification* notification in notifications)
     {
-        NSString* fid = [NSString stringWithFormat:@"%@", notification.options.id];
-        
-        if ([fid isEqualToString:[id stringValue]]) {
+        if ([notification.options.id isEqualToString:id]) {
             return notification;
         }
     }
@@ -206,7 +201,7 @@
  * @param type
  *      Notification life cycle type
  */
-- (UILocalNotification*) localNotificationWithId:(NSNumber*)id andType:(APPLocalNotificationType)type
+- (UILocalNotification*) localNotificationWithId:(NSString*)id andType:(APPLocalNotificationType)type
 {
     UILocalNotification* notification = [self localNotificationWithId:id];
 
@@ -226,7 +221,7 @@
 
     for (UILocalNotification* notification in notifications)
     {
-        [options addObject:notification.options.userInfo];
+        [options addObject:notification.userInfo];
     }
 
     return options;
@@ -246,7 +241,7 @@
     for (UILocalNotification* notification in notifications)
     {
         if (notification.type == type) {
-            [options addObject:notification.options.userInfo];
+            [options addObject:notification.userInfo];
         }
     }
 
@@ -264,12 +259,12 @@
     UILocalNotification* notification;
     NSMutableArray* options = [[NSMutableArray alloc] init];
 
-    for (NSNumber* id in ids)
+    for (NSString* id in ids)
     {
         notification = [self localNotificationWithId:id];
 
         if (notification) {
-            [options addObject:notification.options.userInfo];
+            [options addObject:notification.userInfo];
         }
     }
 
@@ -289,12 +284,12 @@
     UILocalNotification* notification;
     NSMutableArray* options = [[NSMutableArray alloc] init];
 
-    for (NSNumber* id in ids)
+    for (NSString* id in ids)
     {
         notification = [self localNotificationWithId:id];
 
         if (notification && notification.type == type) {
-            [options addObject:notification.options.userInfo];
+            [options addObject:notification.userInfo];
         }
     }
 

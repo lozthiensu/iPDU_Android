@@ -43,7 +43,7 @@
     "cordova-plugin-inappbrowser": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-inappbrowser@~1.2.0"
+            "id": "cordova-plugin-inappbrowser"
         },
         "is_top_level": true,
         "variables": {}
@@ -95,32 +95,34 @@
             "type": "git",
             "url": "https://github.com/katzer/cordova-plugin-local-notifications",
             "subdir": ".",
-            "ref": "0.8.4"
+            "ref": "0.8.1"
         },
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-app-event": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-app-event"
-        },
-        "is_top_level": false,
-        "variables": {}
-    },
-    "org.pbernasconi.progressindicator": {
+    "cordova-plugin-spinner-dialog": {
         "source": {
             "type": "git",
-            "url": "https://github.com/pbernasconi/cordova-progressIndicator.git",
+            "url": "https://github.com/Paldom/SpinnerDialog.git",
             "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-file-opener2": {
+    "cordova-plugin-crosswalk-webview": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-crosswalk-webview"
+        },
+        "is_top_level": true,
+        "variables": {
+            "XWALK_VERSION": "xwalk_core_library:15+"
+        }
+    },
+    "cordova-plugin-x-toast": {
         "source": {
             "type": "git",
-            "url": "https://github.com/pwlin/cordova-plugin-file-opener2.git",
+            "url": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
             "subdir": "."
         },
         "is_top_level": true,

@@ -28,15 +28,15 @@ angular.module('pduNewsApp')
     $scope.datapdu = [];
 
 
-    $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+    $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
 
 
     //Determine status modal view thread
     $scope.getTrangThaiModal = function () {
-        if ($scope.classHienThiBaiViet == "modal animated fadeInRightBig")
-            $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig")
+            $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
         else
-            $scope.classHienThiBaiViet = "modal animated fadeInRightBig";
+            $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
     }
 
 
@@ -72,7 +72,7 @@ angular.module('pduNewsApp')
             , "nightMode": $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.style(1);
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
@@ -89,7 +89,7 @@ angular.module('pduNewsApp')
             $rootScope.cssScrollInfo = "scroller_info            scroller_info-night";
             $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
         } else {
-            $cordovaStatusbar.style(0);
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssModeModalCat = "modal-header-theloai";
@@ -114,6 +114,9 @@ angular.module('pduNewsApp')
         $scope.getTrangThaiModal();
         $cordovaSQLite.execute($rootScope.db, "SELECT * FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.baiviet_id]).then(function (res) {
             $scope.datapdu.push(res.rows.item(0));
+            contentConvert = $scope.datapdu[0].Content;
+            contentConvert = contentConvert.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhSave' data-toggle='modal' ");
+            $scope.datapdu[0].Content = contentConvert;
         });
     };
 
@@ -132,7 +135,8 @@ angular.module('pduNewsApp')
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
         var json = JSON.parse(data);
-        FullScreenImage.showImageURL(json[url].Url); 
+        $scope.urlImgageZoom = data[url].Url;
+        delete url; delete data;
     };
 
 
@@ -181,7 +185,7 @@ angular.module('pduNewsApp')
         //Delete from SQLite
         $cordovaSQLite.execute($rootScope.db, "DELETE FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.baiviet_id]).then(function (res) {});
         //If modal view thread is opening, close it and destroy data
-        if ($scope.classHienThiBaiViet == "modal animated fadeInRightBig")
+        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig")
             $scope.huyData();
     };
 

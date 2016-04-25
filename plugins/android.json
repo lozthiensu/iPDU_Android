@@ -1,0 +1,55 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.studiogamefree.dev.demoocr"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        }
+    }
+}

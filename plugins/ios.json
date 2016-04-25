@@ -7,7 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-app-event": {
+        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-device": {
@@ -23,6 +23,9 @@
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-spinner-dialog": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-splashscreen": {
@@ -43,10 +46,7 @@
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "org.pbernasconi.progressindicator": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "cordova-plugin-file-opener2": {
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },

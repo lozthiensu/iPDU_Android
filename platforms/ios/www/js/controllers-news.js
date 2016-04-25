@@ -1,6 +1,14 @@
 angular.module('pduNewsApp')
-.controller('page_News_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaInAppBrowser, $cordovaProgress) {
-
+.controller('page_News_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaInAppBrowser, $cordovaProgress, $cordovaSpinnerDialog, $cordovaDialogs) {
+    
+//    
+//    document.addEventListener("deviceready", onDeviceReady, false);
+//    function onDeviceReady(){
+//        document.addEventListener("backbutton", function(e){
+//            $cordovaDialogs.alert("Nhấn từ news", "Hoàn thành"); 
+//        }, false);
+//    } 
+//    
     
     //Open link from this view
     $scope.openWeb = function(url){
@@ -58,13 +66,15 @@ angular.module('pduNewsApp')
             .then(function (result) {}, function (error) {
             }, function (progress) {
                 intFirst = parseInt($scope.startDownload);
-                if( intFirst == 0 ){
-                    $cordovaProgress.showSimple(false);
+                if( intFirst == 0 ){  
+                                        $cordovaSpinnerDialog.show("","Đang tải", true);
+
                     $scope.startDownload = 1;
                 }
                 $scope.downloadProgress = (progress.loaded / progress.total) * 100;                intFirst = parseInt($scope.downloadProgress);
                 if( intFirst >= 100 ){
-                    $cordovaProgress.hide();
+            $cordovaSpinnerDialog.hide();
+                    //$cordovaProgress.hide();
                 }
             });
         }
@@ -172,17 +182,17 @@ angular.module('pduNewsApp')
 
 
     //Determnie status model view thread
-    $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+    $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
     $scope.getTrangThaiModal = function () {
-        if ($scope.classHienThiBaiViet == "modal animated fadeInRightBig"){
-            $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig"){
+            $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
                 delete $scope.datapdu;
             }, 300);
         }
         else
-            $scope.classHienThiBaiViet = "modal animated fadeInRightBig";
+            $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
     };
 
 
@@ -214,7 +224,7 @@ angular.module('pduNewsApp')
             "sizeFont": $rootScope.settingData[0].sizeFont
             , "nightMode": $rootScope.settingData[0].nightMode}]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.style(1);
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssModeModalCat = "modal-header-theloai     modal-header-theloai-night";
@@ -227,7 +237,7 @@ angular.module('pduNewsApp')
             $rootScope.cssModeFooter            = "menu_footer              menu_footer-night";
             $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
         } else {
-            $cordovaStatusbar.style(0);
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssModeModalCat = "modal-header-theloai";
@@ -267,10 +277,15 @@ angular.module('pduNewsApp')
     
     //Opening view modal and show thread
     $scope.showDataId = function (idBaiViet) {
-        $cordovaProgress.showSimple(false);
+                    $cordovaSpinnerDialog.show("","Đang tải", true);
+
         pduService.News_getId(idBaiViet.Id).success(function (datapdus) {
             $scope.datapdu = datapdus;
-            $cordovaProgress.hide();
+            contentConvert = $scope.datapdu[0].Content;
+            contentConvert = contentConvert.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhNews' data-toggle='modal' ");
+            $scope.datapdu[0].Content = contentConvert;
+            //$cordovaProgress.hide();
+            $cordovaSpinnerDialog.hide();
             delete datapdus;
         });
         $scope.getTrangThaiModal();
@@ -289,7 +304,7 @@ angular.module('pduNewsApp')
 
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
-        PhotoViewer.show(data[url].Url, $scope.datapdu[0].Title);
+        $scope.urlImgageZoom = data[url].Url;
         delete url; delete data;
     };
 

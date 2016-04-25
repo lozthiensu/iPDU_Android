@@ -49,13 +49,19 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    <div class="paddingheader"></div>
+                    
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
                     <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemNews" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="slideHinhNews" class="modal fade" tabindex="-1" role="dialog">
+        <div class="scroller_img">
+            <img class="center" ng-src="{{urlImgageZoom}}">
+        </div>
+        <button type="button" class="closeImg ion-ios-close" data-dismiss="modal"></button>
     </div>
     <div id="caiDatKhiXemNews" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
@@ -98,7 +104,7 @@
     </div>
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
-            <div class="paddingheader"></div>
+            
             <span class="modal-title">Tin mới</span>
         </div>
     </div>

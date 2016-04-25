@@ -5104,11 +5104,11 @@ button.list-group-item-danger.active:focus {
   float: right;
   font-size: 30px;
   line-height: 1;
-  color: #2dbe60; 
+  color: #fff; 
 }
 .back_back:hover,
 .back_back:focus {
-  color: #2dbe60;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5136,11 +5136,11 @@ button.back_back {
   float: left;
   font-size: 30px;
   line-height: 1;
-  color: #2dbe60;
+  color: #fff;
 }
 .setting_on_read:hover,
 .setting_on_read:focus {
-  color: #2dbe60;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5159,11 +5159,11 @@ button.setting_on_read {
   font-size: 30px;
   font-weight: bold;
   line-height: 1;
-  color: #2dbe60; 
+  color: #fff; 
 }
 .close:hover,
 .close:focus {
-  color: #2dbe60;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -5186,7 +5186,7 @@ button.close {
 }
 .closeImg:hover,
 .closeImg:focus {
-  color: #2dbe60;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }

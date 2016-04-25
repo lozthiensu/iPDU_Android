@@ -2,5 +2,6 @@
     "AudioToolbox.framework": 1,
     "Social.framework": 1,
     "MessageUI.framework": 1,
-    "libsqlite3.dylib": 1
+    "libsqlite3.dylib": 1,
+    "QuartzCore.framework": 2
 }

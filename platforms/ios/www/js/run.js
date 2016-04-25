@@ -22,7 +22,12 @@ angular.module('pduNewsApp')
     $rootScope.dataSave = []; //Contain data thread read from SQLite
     $rootScope.saveLogin = []; //Contain login info 
     $rootScope.SavedSession = []; //Contain index tab
-
+    
+    $rootScope.tapToExit = 1;
+    $rootScope.openCaiDat = 0;
+    $rootScope.openTheLoai = 0;
+    $rootScope.openThread = 0; 
+    $rootScope.viewImage = 0; 
 
     //When device ready, do it
     document.addEventListener("deviceready", onDeviceReady, false);

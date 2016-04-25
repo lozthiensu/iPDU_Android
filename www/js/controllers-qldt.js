@@ -1,6 +1,6 @@
 angular.module('pduNewsApp')
-.controller('page_Qldt_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaDialogs, $cordovaInAppBrowser, $cordovaProgress) {
-    
+.controller('page_Qldt_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaDialogs, $cordovaInAppBrowser, $cordovaProgress, $cordovaSpinnerDialog) {
+   
     
     //Open link from this view
     $scope.openWeb = function(url){
@@ -81,17 +81,17 @@ angular.module('pduNewsApp')
 
 
     //Determnie status model view thread
-    $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+    $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
     $scope.getTrangThaiModal = function () {
-        if ($scope.classHienThiBaiViet == "modal animated fadeInRightBig"){
-            $scope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig"){
+            $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
                 delete $scope.datapdu;
             }, 300);
         }
         else
-            $scope.classHienThiBaiViet = "modal animated fadeInRightBig";
+            $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
     };
 
 
@@ -124,7 +124,7 @@ angular.module('pduNewsApp')
             "nightMode":    $rootScope.settingData[0].nightMode
         }]);
         if ($rootScope.settingData[0].nightMode == true) {
-            $cordovaStatusbar.style(1);
+            $cordovaStatusbar.styleHex('#0A0A0A');
             $rootScope.cssModalHeaderSetting = "modal-header-setting     modal-header-setting-night";
             $rootScope.cssModeModalHeader = "modal-header             modal-header-night";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt list_baiviet_qldt-night";
@@ -139,7 +139,7 @@ angular.module('pduNewsApp')
             $rootScope.cssModeFooter            = "menu_footer              menu_footer-night";
             $rootScope.cssItemSelect            = "itemSelect              itemSelect-night";
         } else {
-            $cordovaStatusbar.style(0);
+            $cordovaStatusbar.styleHex('#2dbe60');
             $rootScope.cssModalHeaderSetting = "modal-header-setting";
             $rootScope.cssModeModalHeader = "modal-header";
             $rootScope.cssListThreadQldt = "list_baiviet_qldt";
@@ -214,6 +214,7 @@ angular.module('pduNewsApp')
         }
     };
     $scope.autoLogin();
+    $rootScope.showBoxlogin = false;
     //Determine status of login process
     $scope.travedaDangnhap = function () {
         return daDangnhap == "true";
@@ -325,10 +326,15 @@ angular.module('pduNewsApp')
 
     //Opening view modal and show thread
     $scope.showDataId = function (idBaiViet) {
-        $cordovaProgress.showSimple(false);
+        $rootScope.tapToExit = 0;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 1; 
+        $rootScope.viewImage = 0;
+        $cordovaSpinnerDialog.show("","Đang tải", true);
         pduService.Qldt_getId(idBaiViet.Id).success(function (datapdus) {
             $scope.datapdu = datapdus;
-            $cordovaProgress.hide();
+            $cordovaSpinnerDialog.hide();
             delete datapdus;
         });
         $scope.getTrangThaiModal();
@@ -347,7 +353,43 @@ angular.module('pduNewsApp')
 
     //Close view modal and destroy data
     $scope.huyData = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 0; 
+        $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
+        angular.element('#caiDatKhiXemQldt').modal('hide');
+    };
+    $scope.moTheLoai = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.openTheLoai = 1;
+    };
+    $scope.dongTheLoai = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openTheLoai = 0;
+    };
+    $scope.moKetQua = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.viewStudieResult = 1;
+    };
+    $scope.dongKetQua = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.viewStudieResult = 0;
+    };
+    $scope.moDangKi = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.viewRegisterHP = 1;
+    };
+    $scope.dongDangKi = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.viewRegisterHP = 0;
+    };
+    $scope.moCaiDat = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongCaiDat = function () { 
+        $rootScope.openCaiDat = 0;
     };
 
 

@@ -19,10 +19,10 @@
                         <br> Lớp: <b>{{::loginRec.Class}}</b>
                     </div>
                     <button class="ion-log-out button_login" ng-click="dangXuat();"> Đăng xuất</button>
-                    <div data-target="#xemKetQuaHocTap" data-toggle="modal" role="button">
+                    <div ng-tap="moKetQua();" data-target="#xemKetQuaHocTap" data-toggle="modal" role="button">
                         <div ng-class="cssLinkMenu"><div class="ion-ios-albums size-24 canhleicon"></div> Xem kết quả học tập</div>
                     </div>
-                    <div data-target="#dangKiHocPhan" data-toggle="modal" role="button">
+                    <div ng-tap="moDangKi();" data-target="#dangKiHocPhan" data-toggle="modal" role="button">
                         <div ng-class="cssLinkMenu"><div class="ion-ios-compose size-24 canhleicon"></div> Đăng kí học phần</div>
                     </div>
                 </div>
@@ -72,10 +72,10 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    <div class="paddingheader"> </div>
+                    
                     <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemQldt" data-toggle="modal" role="button"></button>
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" ng-tap="moCaiDat();" data-target="#caiDatKhiXemQldt" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
@@ -112,8 +112,8 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    <div class="paddingheader"></div>
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    
+                    <button type="button" ng-tap="dongKetQua();" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Kết quả học tập</span>
                 </div>
             </div>
@@ -145,8 +145,7 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    <div class="paddingheader"></div>
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <button type="button" ng-tap="dongDangKi();" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Đăng kí học phần</span>
                 </div>
             </div>
@@ -155,7 +154,7 @@
     <div id="caiDatKhiXemQldt" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
             <div ng-class="cssModalHeaderSetting">
-                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <button type="button" class="close ion-ios-close-outline" ng-tap="dongCaiDat();" data-dismiss="modal"></button>
                 <span class="modal-title">Cài đặt</span>
             </div>
             <div class="setting_content">
@@ -195,7 +194,7 @@
         <div class="modal-dialog">
             <div ng-class="cssModalCat">
                 <div ng-class="cssModeModalCat">
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <button ng-tap="dongTheLoai();" type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <h4 class="modal-title">Chọn thể loại</h4>
                 </div>
                 <div ng-repeat="daChon in theLoaiList track by daChon.id">
@@ -207,10 +206,10 @@
     </div>
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
-            <div class="paddingheader"> </div>
+            
             <button type="button" class="back_back ion-ios-person" ng-touchend="showBoxlogin = !showBoxlogin"></button>
             <span class="modal-title">Quản lí đào tạo</span>
-            <button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiQldt" data-toggle="modal" role="button"></button>
+            <button type="button" ng-tap="moTheLoai();" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiQldt" data-toggle="modal" role="button"></button>
         </div>
     </div>
 </div>

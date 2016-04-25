@@ -306,20 +306,25 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.pbernasconi.progressindicator/www/progressIndicator.js",
-        "id": "org.pbernasconi.progressindicator.ProgressIndicator",
-        "pluginId": "org.pbernasconi.progressindicator",
-        "clobbers": [
-            "ProgressIndicator"
+        "file": "plugins/cordova-plugin-spinner-dialog/www/spinner.js",
+        "id": "cordova-plugin-spinner-dialog.SpinnerDialog",
+        "pluginId": "cordova-plugin-spinner-dialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
-        "id": "cordova-plugin-file-opener2.FileOpener2",
-        "pluginId": "cordova-plugin-file-opener2",
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "pluginId": "cordova-plugin-x-toast",
         "clobbers": [
-            "cordova.plugins.fileOpener2"
+            "window.plugins.toast"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests",
+        "pluginId": "cordova-plugin-x-toast"
     }
 ];
 module.exports.metadata = 
@@ -336,10 +341,9 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.2.0",
     "cordova-plugin-device": "1.1.1",
     "de.appplant.cordova.plugin.local-notification": "0.8.1",
+    "cordova-plugin-spinner-dialog": "1.3.1",
     "cordova-plugin-crosswalk-webview": "1.6.1",
-    "cordova-plugin-app-event": "1.2.0",
-    "org.pbernasconi.progressindicator": "1.1.0",
-    "cordova-plugin-file-opener2": "2.0.2"
+    "cordova-plugin-x-toast": "2.5.0"
 }
 // BOTTOM OF METADATA
 });
