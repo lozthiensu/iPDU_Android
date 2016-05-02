@@ -31,7 +31,6 @@ angular.module('pduNewsApp')
     $rootScope.viewImage = 0; 
     $rootScope.viewStudieResult = 0; 
     $rootScope.viewRegisterHP = 0; 
-    $rootScope.viewHelpSub = 0;
     $rootScope.viewImage = 0; 
 
     //When device ready, do it

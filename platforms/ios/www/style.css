@@ -54,14 +54,14 @@ span.menu4icontitle{
  
 /* Hiển thị list bài viết quan ly dao tao */
 .list_baiviet_qldt{
-	padding-top:150px;
+	padding-top:125px;
 	background-color: #fff !important;
 	padding-bottom:40px; 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; 
 	height: 100vh;
 }.list_baiviet{
-	padding-top: 80px;
+	padding-top: 60px;
 	background-color: #fff !important;
 	padding-bottom:60px; 
     overflow-y: scroll;
@@ -642,7 +642,7 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 75px 0 20px 0;
+    padding: 55px 0 20px 0;
     margin: 0 -10px 0 -10px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -659,7 +659,7 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 75px 0 20px 0;
+    padding: 55px 0 20px 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -670,7 +670,7 @@ i {
     position: relative;
 	height: 100vh; 
     overflow: hidden;
-    padding: 75px 0 20px 0;
+    padding: 55px 0 20px 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     margin: 0 -10px 0 -10px;

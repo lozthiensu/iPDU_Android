@@ -49,10 +49,9 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemNews" data-toggle="modal" role="button"></button>
+                    <button type="button" ng-tap="moCaiDat();" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemNews" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
@@ -61,12 +60,12 @@
         <div class="scroller_img">
             <img class="center" ng-src="{{urlImgageZoom}}">
         </div>
-        <button type="button" class="closeImg ion-ios-close" data-dismiss="modal"></button>
+        <button type="button" class="closeImg ion-ios-close" ng-tap="dongImage();" data-dismiss="modal"></button>
     </div>
     <div id="caiDatKhiXemNews" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
             <div ng-class="cssModalHeaderSetting">
-                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <button type="button" ng-tap="dongCaiDat();" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                 <span class="modal-title">Cài đặt</span>
             </div>
             <div class="setting_content">
@@ -104,7 +103,6 @@
     </div>
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
-            
             <span class="modal-title">Tin mới</span>
         </div>
     </div>

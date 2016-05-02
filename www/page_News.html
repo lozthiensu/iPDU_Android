@@ -10,7 +10,7 @@
                     <div class="rutgon_text">{{::itemNews.Title}}</div>
                 </div>
             </div>
-            <div ng-if="itemNews.HasThumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-click="showDataId(itemNews)" role="button">
+            <div ng-if="itemNews.HasThumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiNews" data-toggle="modal" ng-tap="showDataId(itemNews)" role="button">
                 <div class="catandDate">
                     <font size="2">{{::itemNews.Cat}} - {{::itemNews.Date}}</font>
                 </div>
@@ -31,9 +31,9 @@
                     <div ng-class="cssFontSize"><b>{{::datapdu.Title}}</b></div>
                     <div class="baiviet_tieude_content">
                         <div class="baiviet_tieude_title">
-                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-touchend="saveToSQLite(datapdu);"></i>
-                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-touchend="deleteToSQLite(datapdu);"></i>
-                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
+                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-click="saveToSQLite(datapdu);"></i>
+                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-click="deleteToSQLite(datapdu);"></i>
+                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-tap="shareTo();"></i>
                         </div>
                         <div class="baiviet_tieude_info">
                             <div class="font1">
@@ -72,16 +72,16 @@
                 <div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13">Cỡ chữ</span></div>
                 <div class="setting_info">
                     <div class="sizefont_buttons" class="text-center">
-                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);">
+                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-tap="setCurrentsizeFont(1);">
                             <span class="size-11">1</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);">
+                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-tap="setCurrentsizeFont(2);">
                             <span class="size-13">2</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);">
+                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-tap="setCurrentsizeFont(3);">
                             <span class="size-17">3</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);">
+                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-tap="setCurrentsizeFont(4);">
                             <span class="size-22">4</span>
                         </a>
                     </div>

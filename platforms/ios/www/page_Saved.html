@@ -32,6 +32,7 @@
                             <i span class="ion-ios-trash-outline size-45" ng-click="deleteToSQLite(datapdu);"></i>
                             <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
                         </div>
+                        {{datapdu.baiviet_content}}
                         <div class="baiviet_tieude_info">
                             <div class="font1">{{::datapdu.baiviet_author}}
                                 <br><font size="2" color="gray">{{::datapdu.baiviet_date}}</font></div>
@@ -46,7 +47,7 @@
                     
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemSave" data-toggle="modal" role="button"></button>
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemSave" ng-tap="moCaiDat();" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
@@ -55,12 +56,12 @@
         <div class="scroller_img">
             <img class="center" ng-src="{{urlImgageZoom}}">
         </div>
-        <button type="button" class="closeImg ion-ios-close" data-dismiss="modal"></button>
+        <button type="button" class="closeImg ion-ios-close" ng-tap="dongImage();" data-dismiss="modal"></button>
     </div>
     <div id="caiDatKhiXemSave" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
             <div ng-class="cssModalHeaderSetting">
-                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <button type="button" class="close ion-ios-close-outline" ng-tap="dongCaiDat();" data-dismiss="modal"></button>
                 <span class="modal-title">Cài đặt</span>
             </div>
             <div class="setting_content">

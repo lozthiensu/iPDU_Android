@@ -1,15 +1,7 @@
 angular.module('pduNewsApp')
 .controller('page_News_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaInAppBrowser, $cordovaProgress, $cordovaSpinnerDialog, $cordovaDialogs) {
     
-//    
-//    document.addEventListener("deviceready", onDeviceReady, false);
-//    function onDeviceReady(){
-//        document.addEventListener("backbutton", function(e){
-//            $cordovaDialogs.alert("Nhấn từ news", "Hoàn thành"); 
-//        }, false);
-//    } 
-//    
-    
+
     //Open link from this view
     $scope.openWeb = function(url){
         $cordovaInAppBrowser.open(url, '_system');
@@ -42,10 +34,10 @@ angular.module('pduNewsApp')
             filename = url.split("/").pop();
             //Convert to vietnamese unsigned
             filename= filename.toLowerCase(); 
-            filename= filename.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ  |ặ|ẳ|ẵ/g,"a"); 
+            filename= filename.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
             filename= filename.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
             filename= filename.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
-            filename= filename.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ  |ợ|ở|ỡ/g,"o"); 
+            filename= filename.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
             filename= filename.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
             filename= filename.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
             filename= filename.replace(/đ/g,"d");
@@ -97,7 +89,7 @@ angular.module('pduNewsApp')
             } else
                 textAfter += textBefore[z];
         }
-        textAfter = textAfter.replace(/slideHinh/g, "slideHinhSave");
+        textAfter = textAfter.replace(/slideHinhNews/g, "slideHinhSave");
         textAfter = textAfter.replace(/datapdu.Img/g, "datapdu.baiviet_img");
         imgList = JSON.stringify($scope.saved);
         numForx = $scope.listImgFromSever.length;
@@ -277,8 +269,12 @@ angular.module('pduNewsApp')
     
     //Opening view modal and show thread
     $scope.showDataId = function (idBaiViet) {
-                    $cordovaSpinnerDialog.show("","Đang tải", true);
-
+        $rootScope.tapToExit = 0;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 1; 
+        $rootScope.viewImage = 0;
+        $cordovaSpinnerDialog.show("","Đang tải", true);
         pduService.News_getId(idBaiViet.Id).success(function (datapdus) {
             $scope.datapdu = datapdus;
             contentConvert = $scope.datapdu[0].Content;
@@ -304,6 +300,7 @@ angular.module('pduNewsApp')
 
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
+        $rootScope.viewImage = 1;
         $scope.urlImgageZoom = data[url].Url;
         delete url; delete data;
     };
@@ -311,7 +308,23 @@ angular.module('pduNewsApp')
 
     //Close view modal and destroy data
     $scope.huyData = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 0; 
+        $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
+        angular.element('#caiDatKhiXemNews').modal('hide');
+        angular.element('#slideHinhNews').modal('hide');
+    };
+    $scope.moCaiDat = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongCaiDat = function () { 
+        $rootScope.openCaiDat = 0;
+    };
+    $scope.dongImage = function () { 
+        $rootScope.viewImage = 0;
     };
 
 

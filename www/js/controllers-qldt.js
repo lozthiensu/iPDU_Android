@@ -44,6 +44,7 @@ angular.module('pduNewsApp')
         localStorageService.set('listIDSaved', $scope.tempListId);
         $cordovaSQLite.execute($rootScope.db, "INSERT INTO sqlSave (baiviet_id, baiviet_title, baiviet_date, baiviet_author, baiviet_content, baiviet_img, baiviet_thumb) VALUES (?,?,?,?,?,?,?)", [$scope.datapdu[0].Id + 'qldt', $scope.datapdu[0].Title, $scope.datapdu[0].Date, $scope.datapdu[0].Author, $scope.datapdu[0].Content, " ", "No"]).then(function (res) {}, function (err) {
         });
+       
     };
 
 
@@ -59,7 +60,7 @@ angular.module('pduNewsApp')
             }
         }
         $cordovaSQLite.execute($rootScope.db, "DELETE FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.Id + 'qldt']).then(function (res) {});
-        delete tongSoBai; delete i; delete $scope.tempListId;
+        delete tongSoBai; delete i;
     };
 
 
@@ -75,7 +76,7 @@ angular.module('pduNewsApp')
                 break;
             }
         }
-        delete n; delete i; delete $scope.tempListId;
+        delete n; delete i;
         return $scope.tonTai;
     };
 
@@ -87,7 +88,7 @@ angular.module('pduNewsApp')
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
-                delete $scope.datapdu;
+                $scope.datapdu =[];
             }, 300);
         }
         else

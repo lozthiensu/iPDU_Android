@@ -1,7 +1,7 @@
 angular.module('pduNewsApp')
 .controller('page_Home_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaInAppBrowser, $cordovaProgress, $cordovaSpinnerDialog, $cordovaDialogs) {
 
-
+    
     //Open link from this view
     $scope.openWeb = function(url){
         $cordovaInAppBrowser.open(url, '_system');
@@ -86,7 +86,7 @@ angular.module('pduNewsApp')
             } else
                 textAfter += textBefore[z];
         }
-        textAfter = textAfter.replace(/slideHinh/g, "slideHinhSave");
+        textAfter = textAfter.replace(/slideHinhHome/g, "slideHinhSave");
         textAfter = textAfter.replace(/datapdu.Img/g, "datapdu.baiviet_img");
         imgList = JSON.stringify($scope.saved);
         numForx = $scope.listImgFromSever.length;
@@ -266,6 +266,14 @@ angular.module('pduNewsApp')
         }
     };
 
+    $scope.onReload = function() {
+      console.warn('reload');
+      var deferred = $q.defer();
+      setTimeout(function() {
+        deferred.resolve(true);
+      }, 1000);
+      return deferred.promise;
+    };
 
     //Get data from sever
     $scope.showData = function () {
@@ -334,42 +342,8 @@ angular.module('pduNewsApp')
         $rootScope.openThread = 0; 
         $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
-        //$('#caiDatKhiXem').modal('hide');
         angular.element('#caiDatKhiXem').modal('hide');
     };
-    
-
-    $rootScope.$on("closeOk", function(){
-        $scope.closeOk();
-    });
-    $scope.closeOk = function (e) {
-            var xa = 0;
-            if ($rootScope.viewImage==0&&$rootScope.openCaiDat==1&&$rootScope.openThread==1&&xa==0) {
-                $('#caiDatKhiXem').modal('hide');
-                xa=1;
-                $rootScope.openCaiDat = 0;
-                $scope.$digest();
-                e.preventDefault();
-                e.stopPropagation();
-                return true;
-            } else if ($rootScope.viewImage==0&&$rootScope.openCaiDat==0&&$rootScope.openThread==1&&xa==0) {
-                $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
-                xa=1;
-                $timeout(function () {
-                    $('#hienBaiHome').modal('hide');
-                }, 1000);
-                $rootScope.tapToExit = 1;
-                $rootScope.openThread = 0;
-                $scope.$digest();
-                e.preventDefault();
-                e.stopPropagation();
-                return true;
-            }
-    };
-    
-    
-    
-    
     $scope.moTheLoai = function () {
         $rootScope.tapToExit = 0;
         $rootScope.openTheLoai = 1;
@@ -378,16 +352,12 @@ angular.module('pduNewsApp')
         $rootScope.tapToExit = 1;
         $rootScope.openTheLoai = 0;
     };
-    
-    
     $scope.moCaiDat = function () {
         $rootScope.openCaiDat = 1;
     };
     $scope.dongCaiDat = function () { 
         $rootScope.openCaiDat = 0;
     };
-    
-    
     $scope.dongImage = function () { 
         $rootScope.viewImage = 0;
     };

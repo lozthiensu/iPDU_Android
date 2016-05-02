@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div id="hienBaiHome" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">        <div ng-http-loader template="loading.html"></div>
+    <div id="hienBaiHome" close-my-modal ng-class="classHienThiBaiViet" tabindex="-1" role="dialog">
         <div ng-class="cssModal">
             <div ng-repeat="datapdu in datapdu" ng-class="cssModalContent">
                 <div class="scroller_content">
@@ -52,9 +52,8 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
-                    <span class="modal-title">Xem bài viết{{tapToExit}} {{openThread}} {{openCaiDat}} {{viewImage}}{{statusModal}}</span>
+                    <span class="modal-title">Xem bài viết</span>
                     <button type="button" class="setting_on_read ion-ios-gear-outline" ng-tap="moCaiDat();" data-target="#caiDatKhiXem" data-toggle="modal" role="button"></button>
                 </div>
             </div>
@@ -121,9 +120,8 @@
     </div>
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
-            
             <button type="button" class="back_back" role="button"></button>
-            <span class="modal-title">Trang chủ{{tapToExit}} {{openThread}} {{openCaiDat}} {{openTheLoai}}</span>
+            <span class="modal-title">Trang chủ</span>
             <button type="button" class="setting_on_read ion-ios-search" ng-tap="moTheLoai();" data-target="#chonTheLoaiHome" data-toggle="modal" role="button"></button>
         </div>
     </div>

@@ -21,12 +21,15 @@ angular.module('pduNewsApp')
                 } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
                     angular.element('#slideHinhHome').modal('hide');
                     angular.element('#slideHinhCntt').modal('hide');
+                    angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
                     $rootScope.viewImage = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 0 && $rootScope.openThread == 1) {
                     angular.element('#slideHinhHome').modal('hide');
                     angular.element('#slideHinhCntt').modal('hide');
                     angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
                     $rootScope.viewImage = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
@@ -34,6 +37,7 @@ angular.module('pduNewsApp')
                     angular.element('#caiDatKhiXemCntt').modal('hide');
                     angular.element('#caiDatKhiXemQldt').modal('hide');
                     angular.element('#caiDatKhiXemNews').modal('hide');
+                    angular.element('#caiDatKhiXemSave').modal('hide');
                     angular.element('#huongDan').modal('hide');
                     angular.element('#dieuKhoan').modal('hide');
                     $rootScope.openCaiDat = 0;
@@ -45,6 +49,7 @@ angular.module('pduNewsApp')
                         angular.element('#hienBaiCntt').modal('hide');
                         angular.element('#hienBaiQldt').modal('hide');
                         angular.element('#hienBaiNews').modal('hide');
+                        angular.element('#hienBaiSave').modal('hide');
                         angular.element('#hienInfoApp').modal('hide');
                     }, 500);
                     $rootScope.tapToExit = 1;
