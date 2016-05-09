@@ -325,6 +325,14 @@ module.exports = [
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests",
         "pluginId": "cordova-plugin-x-toast"
+    },
+    {
+        "file": "plugins/cordova.plugin.Brightness/www/brightness.js",
+        "id": "cordova.plugin.Brightness.Brightness",
+        "pluginId": "cordova.plugin.Brightness",
+        "clobbers": [
+            "cordova.plugins.brightness"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -343,7 +351,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.8.1",
     "cordova-plugin-spinner-dialog": "1.3.1",
     "cordova-plugin-crosswalk-webview": "1.6.1",
-    "cordova-plugin-x-toast": "2.5.0"
+    "cordova-plugin-x-toast": "2.5.0",
+    "cordova.plugin.Brightness": "0.1.1"
 }
 // BOTTOM OF METADATA
 });

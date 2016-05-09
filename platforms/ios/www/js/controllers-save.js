@@ -16,14 +16,6 @@ angular.module('pduNewsApp')
     }
 
 
-    //Show or hide button delete thread
-    $scope.deleteButton = false;
-    $scope.showDeleteButton = function () {
-        $scope.deleteButton = !$scope.deleteButton;
-        return $scope.deleteButton;
-    }
-
-
     //Contain data for binding when view thread
     $scope.datapdu = [];
 
@@ -38,11 +30,23 @@ angular.module('pduNewsApp')
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
-                delete $scope.datapdu;
+                $scope.datapdu =[];
+                angular.element('#caiDatKhiXemSave').modal('hide');
             }, 300);
         }
         else
             $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
+    };
+    $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+    $scope.getTrangThaiCaiDat = function () {
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig"){
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+            $timeout(function () {
+                angular.element('#caiDatKhiXemSave').modal('hide');
+            }, 300);
+        }
+        else
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeInUpBig";
     };
 
 
@@ -160,13 +164,17 @@ angular.module('pduNewsApp')
         $rootScope.openThread = 0; 
         $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
-        angular.element('#caiDatKhiXemSave').modal('hide');
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig") {
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+        }
     };
     $scope.moCaiDat = function () {
         $rootScope.openCaiDat = 1;
+        $scope.getTrangThaiCaiDat();
     };
     $scope.dongCaiDat = function () { 
         $rootScope.openCaiDat = 0;
+        $scope.getTrangThaiCaiDat();
     };
     $scope.dongImage = function () { 
         $rootScope.viewImage = 0;

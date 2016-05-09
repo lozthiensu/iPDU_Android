@@ -1,4 +1,4 @@
-angular.module('pduNewsApp', ['ui.router', 'LocalStorageModule', 'ngCordova', 'infinite-scroll', 'ngTouch'])
+angular.module('pduNewsApp', ['ui.router', 'LocalStorageModule', 'ngCordova', 'infinite-scroll', 'ngTouch', 'uiSwitch', 'rzModule'])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('main', {

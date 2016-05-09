@@ -49,6 +49,9 @@
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
+    <feature name="Brightness">
+        <param name="android-package" value="org.apache.cordova.plugin.Brightness.BrightnessPlugin" />
+    </feature>
     <allow-intent href="market:*" />
     <icon density="ldpi" src="www/androidRes/36.png" />
     <icon density="mdpi" src="www/androidRes/48.png" />

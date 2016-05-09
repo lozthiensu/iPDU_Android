@@ -2,6 +2,34 @@ angular.module('pduNewsApp')
 .controller('main_Ctrl', function($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaStatusbar, $cordovaLocalNotification, $cordovaDialogs, $interval, $cordovaInAppBrowser, $cordovaProgress, $cordovaToast) { 
     
     
+    //Slider set brightness
+    $rootScope.slider = {
+        value: 0
+        , options: {
+            floor: 0
+            , ceil: 100
+            , step: 5
+            , precision: 1
+            , hidePointerLabels: true
+            , hideLimitLabels: true
+            , ticksTooltip: true
+            , ticksValuesTooltip: true
+            , onChange: function () {
+                window.brightness = cordova.require("cordova.plugin.Brightness.Brightness");
+                brightness.setBrightness($rootScope.slider.value / 100, win, fail);
+                function fail(status) {
+                    $cordovaDialogs.alert(status, "Lỗi !!!");
+                }
+                function win(status) {
+                }
+                localStorageService.set('doSang', [{
+                    "giaTri": $rootScope.slider.value
+                }]);
+            }
+        }
+    }; 
+        
+    
     //Process event backbutton event
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
@@ -86,6 +114,11 @@ angular.module('pduNewsApp')
     
     
     //Load data setting when main loading
+    $rootScope.doSang = localStorageService.get('doSang');
+    if ( !$rootScope.doSang ) {
+        $rootScope.doSang = [{"giaTri": 85}];
+    }
+    //Load data setting when main loading
     $rootScope.settingData = localStorageService.get('settingData');
     if ( !$rootScope.settingData ) {
         $rootScope.settingData = [{"sizeFont": 1 ,"nightMode": false }];
@@ -160,7 +193,7 @@ angular.module('pduNewsApp')
                 delete dataSession;
 			});  
     };
-    $scope.autoRefresh();
+    //$scope.autoRefresh();
     $scope.countDieInterval = 0;
     $scope.intervalPromise = $interval(function(){
         $scope.countDieInterval++;

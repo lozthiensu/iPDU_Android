@@ -53,15 +53,19 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"ios-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"LocalNotification\"><param name=\"ios-package\" onload=\"true\" value=\"APPLocalNotification\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Brightness\"><param name=\"ios-package\" value=\"Brightness\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "xml": "<feature name=\"LocalNotification\"><param name=\"ios-package\" onload=\"true\" value=\"APPLocalNotification\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -70,6 +74,9 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
@@ -97,19 +104,25 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+        "cordova-plugin-webserver": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "de.appplant.cordova.plugin.local-notification": {
+        "cordova.plugin.Brightness": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "cordova-plugin-x-toast": {
+        "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
@@ -362,11 +375,32 @@
             ]
         },
         {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
+        },
+        {
             "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
             "id": "cordova-sqlite-storage.SQLitePlugin",
             "pluginId": "cordova-sqlite-storage",
             "clobbers": [
                 "SQLitePlugin"
+            ]
+        },
+        {
+            "file": "plugins/cordova.plugin.Brightness/www/brightness.js",
+            "id": "cordova.plugin.Brightness.Brightness",
+            "pluginId": "cordova.plugin.Brightness",
+            "clobbers": [
+                "cordova.plugins.brightness"
             ]
         },
         {
@@ -379,17 +413,41 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-            "id": "cordova-plugin-x-toast.Toast",
-            "pluginId": "cordova-plugin-x-toast",
+            "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js",
+            "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Core",
+            "pluginId": "de.appplant.cordova.plugin.local-notification",
             "clobbers": [
-                "window.plugins.toast"
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
             ]
         },
         {
-            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-            "id": "cordova-plugin-x-toast.tests",
-            "pluginId": "cordova-plugin-x-toast"
+            "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js",
+            "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Util",
+            "pluginId": "de.appplant.cordova.plugin.local-notification",
+            "merges": [
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
+            ]
         }
-    ]
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-app-event": "1.2.0",
+        "cordova-plugin-crosswalk-webview": "1.6.1",
+        "cordova-plugin-device": "1.1.1",
+        "cordova-plugin-dialogs": "1.2.0",
+        "cordova-plugin-file": "4.1.1",
+        "cordova-plugin-file-transfer": "1.5.0",
+        "cordova-plugin-inappbrowser": "1.2.1",
+        "cordova-plugin-spinner-dialog": "1.3.1",
+        "cordova-plugin-splashscreen": "3.2.2-dev",
+        "cordova-plugin-statusbar": "2.1.1",
+        "cordova-plugin-webserver": "1.0.3",
+        "cordova-plugin-whitelist": "1.2.1",
+        "cordova-plugin-x-socialsharing": "5.0.12-dev",
+        "cordova-plugin-x-toast": "2.5.0",
+        "cordova-sqlite-storage": "0.8.4-dev",
+        "cordova.plugin.Brightness": "0.1.1",
+        "de.appplant.cordova.plugin.local-notification": "0.8.4"
+    }
 }

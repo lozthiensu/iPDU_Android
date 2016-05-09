@@ -12,7 +12,7 @@
             </a>
             <a ng-class="{'active':isCurrentIndex(2)}" ng-touchend="setCurrentIndex(2);">
                 <span><i ng-class="{true:'ion-ios-home size-40', false:'ion-ios-home-outline size-40'}[isCurrentIndex(2)]"></i></span>
-                <span class="menu4icontitle">Trang chủ{{tapToExit}}{{viewImage}}{{openCaiDat}}{{openThread}}{{statusModal}}</span>
+                <span class="menu4icontitle">Trang chủ</span>
             </a>
             <a ng-class="{'active':isCurrentIndex(3)}" ng-touchend="setCurrentIndex(3);">
                 <span><i ng-class="{true:'ion-ios-more size-40', false:'ion-ios-more-outline size-40'}[isCurrentIndex(3)]"></i></span>
@@ -80,8 +80,8 @@
                         <div class="version_data"><i class="size-24"></i><div class="canhlephai">0.1 Beta</div></div>
                     </div>
                     <div class="clear_both"></div>
-                    <div ng-class="cssLinkMenu" data-target="#huongDan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Hướng dẫn sử dụng</div></div>
-                    <div ng-class="cssLinkMenu" data-target="#dieuKhoan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Điều khoản sử dụng</div></div>
+                    <div ng-class="cssLinkMenu" ng-tap="moHuongDan();" data-target="#huongDan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Hướng dẫn sử dụng</div></div>
+                    <div ng-class="cssLinkMenu" ng-tap="moDieuKhoan();" data-target="#dieuKhoan" data-toggle="modal"><i class="size-24"></i><div class="canhletrai">Điều khoản sử dụng</div></div>
                     <a style="cursor: pointer; text-decoration:none;"><div ng-class="cssLinkMenu" ng-tap='openWeb("http://fb.com/My.Name.Is.Kakalot")' ><i class="size-24"></i><div class="canhletrai" ng-tap='openWeb("http://fb.com/My.Name.Is.Kakalot")'>Liên hệ Facebook</div></div></a>
                     <div class="last_info">
                         <img src="img\logo.png"><br>
@@ -90,7 +90,7 @@
             </div>
 	            <div ng-class="cssModeHeader"> 
             <div ng-class="cssModeModalHeader">
-                 <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
+                 <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                 <span class="modal-title">Thông tin sản phẩm</span>
 			     <button type="button" class="setting_on_read" role="button"></button>
             </div>
@@ -170,8 +170,8 @@
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
- 			         <button type="button" class="back_back" role="button"></button>
-                    <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
+ 			        <button type="button" class="back_back" role="button"></button>
+                    <button type="button" ng-tap="dongHuongDan();" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Hướng dẫn sử dụng</span>
                 </div>
             </div>
@@ -253,7 +253,7 @@
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
 			         <button type="button" class="back_back" role="button"></button>
-                     <button type="button" class="setting_on_read ion-ios-close-outline" data-dismiss="modal"></button>
+                     <button type="button" class="setting_on_read ion-ios-close-outline" ng-tap="dongDieuKhoan();" data-dismiss="modal"></button>
                     <span class="modal-title">Điều khoản sử dụng</span>
                 </div>
             </div>

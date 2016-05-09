@@ -105,7 +105,7 @@ angular.module('pduNewsApp')
             console.error(err);
         });
         //Delete all variable to save memory
-        delete numFor; delete i; delete url; delete filename; delete targetPath; delete trustHosts;  delete options; delete filePathNew; delete textBefore; delete textAfter; delete dem; delete start; delete z; delete imgList; delete imgThumb; delete numForx; delete $scope.saved; delete $scope.listImgFromSever; delete intFirst; delete $scope.downloadProgress;
+        delete numFor; delete i; delete url; delete filename; delete targetPath; delete trustHosts;  delete options; delete filePathNew; delete textBefore; delete textAfter; delete dem; delete start; delete z; delete imgList; delete imgThumb; delete numForx; $scope.saved =[]; $scope.listImgFromSever =[]; delete intFirst;
     };
 
 
@@ -149,7 +149,7 @@ angular.module('pduNewsApp')
         }
         //Delete thread from SQLite
         $cordovaSQLite.execute($rootScope.db, "DELETE FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.Id + 'home']).then(function (res) {});
-        delete numFor; delete i; delete url; delete filename; delete tongSoBai; delete $scope.listImgSaved; delete $scope.tempListId;
+        delete numFor; delete i; delete url; delete filename; delete tongSoBai; $scope.listImgSaved =[];
     };
 
 
@@ -165,7 +165,7 @@ angular.module('pduNewsApp')
                 break;
             }
         }
-        delete n; delete i; delete $scope.tempListId;
+        delete n; delete i;
         return $scope.tonTai;
     };
 
@@ -177,11 +177,23 @@ angular.module('pduNewsApp')
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
-                delete $scope.datapdu;
+                $scope.datapdu =[];
+                angular.element('#caiDatKhiXem').modal('hide');
             }, 300);
         }
         else
             $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
+    };
+    $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+    $scope.getTrangThaiCaiDat = function () {
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig"){
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+            $timeout(function () {
+                angular.element('#caiDatKhiXem').modal('hide');
+            }, 300);
+        }
+        else
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeInUpBig";
     };
 
 
@@ -266,14 +278,6 @@ angular.module('pduNewsApp')
         }
     };
 
-    $scope.onReload = function() {
-      console.warn('reload');
-      var deferred = $q.defer();
-      setTimeout(function() {
-        deferred.resolve(true);
-      }, 1000);
-      return deferred.promise;
-    };
 
     //Get data from sever
     $scope.showData = function () {
@@ -342,7 +346,9 @@ angular.module('pduNewsApp')
         $rootScope.openThread = 0; 
         $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
-        angular.element('#caiDatKhiXem').modal('hide');
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig") {
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+        }
     };
     $scope.moTheLoai = function () {
         $rootScope.tapToExit = 0;
@@ -354,9 +360,11 @@ angular.module('pduNewsApp')
     };
     $scope.moCaiDat = function () {
         $rootScope.openCaiDat = 1;
+        $scope.getTrangThaiCaiDat();
     };
     $scope.dongCaiDat = function () { 
         $rootScope.openCaiDat = 0;
+        $scope.getTrangThaiCaiDat();
     };
     $scope.dongImage = function () { 
         $rootScope.viewImage = 0;

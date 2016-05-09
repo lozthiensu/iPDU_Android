@@ -42,7 +42,11 @@ public class RestoreReceiver extends AbstractRestoreReceiver {
      */
     @Override
     public void onRestore (Notification notification) {
-        notification.schedule();
+        if (notification.isScheduled()) {
+            notification.schedule();
+        } else {
+            notification.cancel();
+        }
     }
 
     /**

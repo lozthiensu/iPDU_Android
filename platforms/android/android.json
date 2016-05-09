@@ -79,6 +79,10 @@
                         {
                             "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Brightness\"><param name=\"android-package\" value=\"org.apache.cordova.plugin.Brightness.BrightnessPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -96,6 +100,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\" />",
                             "count": 1
                         }
                     ],
@@ -185,6 +193,9 @@
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova.plugin.Brightness": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
@@ -442,6 +453,13 @@
         {
             "file": "plugins/cordova-plugin-x-toast/test/tests.js",
             "id": "cordova-plugin-x-toast.tests"
+        },
+        {
+            "file": "plugins/cordova.plugin.Brightness/www/brightness.js",
+            "id": "cordova.plugin.Brightness.Brightness",
+            "clobbers": [
+                "cordova.plugins.brightness"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -458,6 +476,7 @@
         "de.appplant.cordova.plugin.local-notification": "0.8.1",
         "cordova-plugin-spinner-dialog": "1.3.1",
         "cordova-plugin-crosswalk-webview": "1.6.1",
-        "cordova-plugin-x-toast": "2.5.0"
+        "cordova-plugin-x-toast": "2.5.0",
+        "cordova.plugin.Brightness": "0.1.1"
     }
 }

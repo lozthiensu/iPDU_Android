@@ -23,8 +23,6 @@
 
 package de.appplant.cordova.plugin.notification;
 
-import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY;
-
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -33,12 +31,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY;
 
 /**
  * Central way to access all or single local notifications set by specific
@@ -48,7 +46,7 @@ import java.util.Set;
 public class Manager {
 
     // Context passed through constructor and used for notification builder.
-	private Context context;
+    private Context context;
 
     /**
      * Constructor
@@ -56,9 +54,9 @@ public class Manager {
      * @param context
      *      Application context
      */
-	private Manager(Context context){
-		this.context = context;
-	}
+    private Manager(Context context){
+        this.context = context;
+    }
 
     /**
      * Static method to retrieve class instance.
@@ -122,7 +120,7 @@ public class Manager {
                 notification.getOptions().getDict(), updates);
 
         try {
-            options.putOpt("updatedAt", new Date().getTime());
+            options.put("updated", true);
         } catch (JSONException ignore) {}
 
         return schedule(options, receiver);
@@ -194,7 +192,11 @@ public class Manager {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
         for (String key : keys) {
-            ids.add(Integer.parseInt(key));
+            try {
+                ids.add(Integer.parseInt(key));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
 
         return ids;
@@ -255,6 +257,9 @@ public class Manager {
     public List<Notification> getByType(Notification.Type type) {
         List<Notification> notifications = getAll();
         ArrayList<Notification> list = new ArrayList<Notification>();
+
+        if (type == Notification.Type.ALL)
+            return notifications;
 
         for (Notification notification : notifications) {
             if (notification.getType() == type) {
@@ -367,6 +372,9 @@ public class Manager {
      */
     public List<JSONObject> getOptionsBy(Notification.Type type,
                                          List<Integer> ids) {
+
+        if (type == Notification.Type.ALL)
+            return getOptionsById(ids);
 
         ArrayList<JSONObject> options = new ArrayList<JSONObject>();
         List<Notification> notifications = getByIds(ids);

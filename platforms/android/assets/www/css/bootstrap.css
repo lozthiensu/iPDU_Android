@@ -5224,7 +5224,7 @@ button.closeImg {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   outline: 0;
-  height:160px;
+  height:200px;
 }
 .modal-open .modal {
   overflow-x: hidden;

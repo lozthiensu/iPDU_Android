@@ -44,6 +44,7 @@ angular.module('pduNewsApp')
         localStorageService.set('listIDSaved', $scope.tempListId);
         $cordovaSQLite.execute($rootScope.db, "INSERT INTO sqlSave (baiviet_id, baiviet_title, baiviet_date, baiviet_author, baiviet_content, baiviet_img, baiviet_thumb) VALUES (?,?,?,?,?,?,?)", [$scope.datapdu[0].Id + 'qldt', $scope.datapdu[0].Title, $scope.datapdu[0].Date, $scope.datapdu[0].Author, $scope.datapdu[0].Content, " ", "No"]).then(function (res) {}, function (err) {
         });
+       
     };
 
 
@@ -59,7 +60,7 @@ angular.module('pduNewsApp')
             }
         }
         $cordovaSQLite.execute($rootScope.db, "DELETE FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.Id + 'qldt']).then(function (res) {});
-        delete tongSoBai; delete i; delete $scope.tempListId;
+        delete tongSoBai; delete i;
     };
 
 
@@ -75,7 +76,7 @@ angular.module('pduNewsApp')
                 break;
             }
         }
-        delete n; delete i; delete $scope.tempListId;
+        delete n; delete i;
         return $scope.tonTai;
     };
 
@@ -87,11 +88,23 @@ angular.module('pduNewsApp')
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
-                delete $scope.datapdu;
+                $scope.datapdu =[];
+                angular.element('#caiDatKhiXemQldt').modal('hide');
             }, 300);
         }
         else
             $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
+    };
+    $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+    $scope.getTrangThaiCaiDat = function () {
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig"){
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+            $timeout(function () {
+                angular.element('#caiDatKhiXemQldt').modal('hide');
+            }, 300);
+        }
+        else
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeInUpBig";
     };
 
 
@@ -359,7 +372,9 @@ angular.module('pduNewsApp')
         $rootScope.openThread = 0; 
         $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
-        angular.element('#caiDatKhiXemQldt').modal('hide');
+        if ($rootScope.classHienThiCaiDat == "modal-setting animated fadeInUpBig") {
+            $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+        }
     };
     $scope.moTheLoai = function () {
         $rootScope.tapToExit = 0;
@@ -387,9 +402,11 @@ angular.module('pduNewsApp')
     };
     $scope.moCaiDat = function () {
         $rootScope.openCaiDat = 1;
+        $scope.getTrangThaiCaiDat();
     };
     $scope.dongCaiDat = function () { 
         $rootScope.openCaiDat = 0;
+        $scope.getTrangThaiCaiDat();
     };
 
 

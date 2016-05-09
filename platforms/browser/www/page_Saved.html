@@ -2,7 +2,7 @@
 
     <div ng-class="cssListThread">
         <div ng-repeat="data in dataSave track by data.baiviet_id">
-            <div ng-if="::data.baiviet_thumb != 'No'" class="list_ban_khach_repeat" data-target="#hienBaiSave" data-toggle="modal" ng-click="showById(data)" role="button">
+            <div ng-if="::data.baiviet_thumb != 'No'" class="list_ban_khach_repeat" data-target="#hienBaiSave" data-toggle="modal" ng-tap="showById(data)" role="button">
                 <div class="catandDate">
                     <font size="2">{{::data.baiviet_date}}</font>
                 </div>
@@ -11,7 +11,7 @@
                     <div class="rutgon_text">{{::data.baiviet_title}}</div>
                 </div>
             </div>
-            <div ng-if="::data.baiviet_thumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiSave" data-toggle="modal" ng-click="showById(data)" role="button">
+            <div ng-if="::data.baiviet_thumb == 'No'" class="list_ban_khach_repeat" data-target="#hienBaiSave" data-toggle="modal" ng-tap="showById(data)" role="button">
                 <div class="catandDate">{{data.baiviet_img}}
                     <font size="2">{{::data.baiviet_date}}</font>
                 </div>
@@ -29,8 +29,8 @@
                     <div ng-class="cssFontSize"><b>{{::datapdu.baiviet_title}}</b></div>
                     <div class="baiviet_tieude_content">
                         <div class="baiviet_tieude_title">
-                            <i span class="ion-ios-trash-outline size-45" ng-click="deleteToSQLite(datapdu);"></i>
-                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
+                            <i span class="ion-ios-trash-outline size-45" ng-tap="deleteToSQLite(datapdu);"></i>
+                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-tap="shareTo();"></i>
                         </div>
                         <div class="baiviet_tieude_info">
                             <div class="font1">{{::datapdu.baiviet_author}}
@@ -46,7 +46,7 @@
                     
                     <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemSave" data-toggle="modal" role="button"></button>
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemSave" ng-tap="moCaiDat();" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
@@ -55,28 +55,28 @@
         <div class="scroller_img">
             <img class="center" ng-src="{{urlImgageZoom}}">
         </div>
-        <button type="button" class="closeImg ion-ios-close" data-dismiss="modal"></button>
+        <button type="button" class="closeImg ion-ios-close" ng-tap="dongImage();" data-dismiss="modal"></button>
     </div>
     <div id="caiDatKhiXemSave" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
             <div ng-class="cssModalHeaderSetting">
-                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <button type="button" class="close ion-ios-close-outline" ng-tap="dongCaiDat();" data-dismiss="modal"></button>
                 <span class="modal-title">Cài đặt</span>
             </div>
             <div class="setting_content">
                 <div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13"> Cỡ chữ</span></div>
                 <div class="setting_info">
                     <div class="sizefont_buttons" class="text-center">
-                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);">
+                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-tap="setCurrentsizeFont(1);">
                             <span class="size-11">1</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);">
+                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-tap="setCurrentsizeFont(2);">
                             <span class="size-13">2</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);">
+                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-tap="setCurrentsizeFont(3);">
                             <span class="size-17">3</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);">
+                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-tap="setCurrentsizeFont(4);">
                             <span class="size-22">4</span>
                         </a>
                     </div>

@@ -45,6 +45,9 @@
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova.plugin.Brightness": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
     "dependent_plugins": {

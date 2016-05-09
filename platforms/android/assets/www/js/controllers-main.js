@@ -1,69 +1,107 @@
 angular.module('pduNewsApp')
-.controller('main_Ctrl', function($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaStatusbar, $cordovaLocalNotification, $cordovaDialogs, $interval, $cordovaInAppBrowser, $cordovaProgress) { 
+.controller('main_Ctrl', function($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaStatusbar, $cordovaLocalNotification, $cordovaDialogs, $interval, $cordovaInAppBrowser, $cordovaProgress, $cordovaToast) { 
     
+    
+    //Slider set brightness
+    $rootScope.slider = {
+        value: 0
+        , options: {
+            floor: 0
+            , ceil: 100
+            , step: 5
+            , precision: 1
+            , hidePointerLabels: true
+            , hideLimitLabels: true
+            , ticksTooltip: true
+            , ticksValuesTooltip: true
+            , onChange: function () {
+                window.brightness = cordova.require("cordova.plugin.Brightness.Brightness");
+                brightness.setBrightness($rootScope.slider.value / 100, win, fail);
+                function win(status) {}
+                function fail(status) {
+                    $cordovaDialogs.alert(status, "Lỗi !!!");
+                }
+            }
+        }
+    }; 
+        
+    
+    //Process event backbutton event
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
         document.addEventListener("backbutton", function (e) {
-            $rootScope.$emit("closeOk", {});
-            $scope.$digest();
-
-//            //$rootScope.$apply(function () {
-//            if ($rootScope.tapToExit == 3) {
-//                navigator.app.exitApp();
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            } else if ($rootScope.tapToExit<=2&&$rootScope.tapToExit>=1) {
-//                $rootScope.tapToExit++;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            } else if ($rootScope.viewImage==1&&$rootScope.openCaiDat==1&&$rootScope.openThread==1) {
-//                $('#slideHinhHome').modal('hide');
-////                $rootScope.viewImage = 0;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            } else if ($rootScope.viewImage==1&&$rootScope.openCaiDat==0&&$rootScope.openThread==1) {
-//                $('#slideHinhHome').modal('hide');
-////                $rootScope.viewImage = 0;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            } else if ($rootScope.viewImage==0&&$rootScope.openCaiDat==1&&$rootScope.openThread==1) {
-//                $('#caiDatKhiXem').modal('hide');
-////                $rootScope.openCaiDat = 0;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            } else if ($rootScope.viewImage==0&&$rootScope.openCaiDat==0&&$rootScope.openThread==1) {
-//                $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
-//                $timeout(function () {
-//                    $('#hienBaiHome').modal('hide');
-//                }, 1000);
-////                $rootScope.tapToExit = 1;
-////                $rootScope.openCaiDat = 0;
-////                $rootScope.openTheLoai = 0;
-////                $rootScope.openThread = 0;
-////                $rootScope.viewImage = 0;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            }
-//            if ($rootScope.openTheLoai == 1) {
-//                $('#chonTheLoaiHome').modal('hide');
-////                $rootScope.tapToExit = 1;
-////                $rootScope.openTheLoai = 0;
-//                $scope.$digest();
-//                e.preventDefault();
-//                e.stopPropagation();
-//            }
-            //});
+            if($rootScope.fixedDoubleEventBackbutton >= 1){
+                $rootScope.fixedDoubleEventBackbutton = 0;
+            }
+            else if($rootScope.fixedDoubleEventBackbutton == 0){
+                if ($rootScope.tapToExit <= 2 && $rootScope.tapToExit >= 1) {
+                    $rootScope.tapToExit++;
+                    if ($rootScope.tapToExit == 3) {
+                        navigator.app.exitApp();
+                        $scope.$digest();
+                    }
+                    $cordovaToast.showShortCenter('Nhấn lại để thoát').then(function(success) {}, function (error) {});
+                    $scope.$digest();
+                } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
+                    angular.element('#slideHinhHome').modal('hide');
+                    angular.element('#slideHinhCntt').modal('hide');
+                    angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
+                    $rootScope.viewImage = 0;
+                    $scope.$digest();
+                } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 0 && $rootScope.openThread == 1) {
+                    angular.element('#slideHinhHome').modal('hide');
+                    angular.element('#slideHinhCntt').modal('hide');
+                    angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
+                    $rootScope.viewImage = 0;
+                    $scope.$digest();
+                } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
+                    angular.element('#caiDatKhiXem').modal('hide');
+                    angular.element('#caiDatKhiXemCntt').modal('hide');
+                    angular.element('#caiDatKhiXemQldt').modal('hide');
+                    angular.element('#caiDatKhiXemNews').modal('hide');
+                    angular.element('#caiDatKhiXemSave').modal('hide');
+                    angular.element('#huongDan').modal('hide');
+                    angular.element('#dieuKhoan').modal('hide');
+                    $rootScope.openCaiDat = 0;
+                    $scope.$digest();
+                } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 0 && $rootScope.openThread == 1) {
+                    $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+                    $timeout(function () {
+                        angular.element('#hienBaiHome').modal('hide');
+                        angular.element('#hienBaiCntt').modal('hide');
+                        angular.element('#hienBaiQldt').modal('hide');
+                        angular.element('#hienBaiNews').modal('hide');
+                        angular.element('#hienBaiSave').modal('hide');
+                        angular.element('#hienInfoApp').modal('hide');
+                    }, 500);
+                    $rootScope.tapToExit = 1;
+                    $rootScope.openThread = 0;
+                    $scope.$digest();
+                } else if ($rootScope.openTheLoai == 1) {
+                    angular.element('#chonTheLoaiHome').modal('hide');
+                    angular.element('#chonTheLoaiCntt').modal('hide');
+                    angular.element('#chonTheLoaiQldt').modal('hide');
+                    $rootScope.tapToExit = 1;
+                    $rootScope.openTheLoai = 0;
+                    $scope.$digest();
+                } else if ($rootScope.viewStudieResult == 1) {
+                    angular.element('#xemKetQuaHocTap').modal('hide');
+                    $rootScope.tapToExit = 1;
+                    $rootScope.viewStudieResult = 0;
+                    $scope.$digest();
+                } else if ($rootScope.viewRegisterHP == 1) {
+                    angular.element('#dangKiHocPhan').modal('hide');
+                    $rootScope.tapToExit = 1;
+                    $rootScope.viewRegisterHP = 0;
+                    $scope.$digest();
+                }
+                $rootScope.fixedDoubleEventBackbutton++; 
+            }
         }, false);
     }
-    
-    
-    
+
     
     //Open link from this view
     $scope.openWeb = function(url){
@@ -176,6 +214,11 @@ angular.module('pduNewsApp')
  	//Determine status modal view information application
 	$rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig"; 
 	$scope.getTrangThaiModal = function(){
+        $rootScope.tapToExit = 0;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 1; 
+        $rootScope.viewImage = 0;
 		if ($rootScope.classHienThiBaiViet === "modal animated fadeInRightBig"){
 			$rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function(){
@@ -189,7 +232,24 @@ angular.module('pduNewsApp')
     
     //Đóng bài viết modal
     $scope.huyData = function() {
+        $rootScope.tapToExit = 1;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 0; 
+        $rootScope.viewImage = 0;
 		$scope.getTrangThaiModal();	
+    };
+    $scope.moHuongDan = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongHuongDan = function () { 
+        $rootScope.openCaiDat = 0;
+    }; 
+    $scope.moDieuKhoan = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongDieuKhoan = function () { 
+        $rootScope.openCaiDat = 0;
     }; 
     
     

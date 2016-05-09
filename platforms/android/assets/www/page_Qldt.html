@@ -1,14 +1,14 @@
 <div ng-controller="page_Qldt_Ctrl">
     <div ng-class="cssloginBoxQldt">
         <div ng-if="showBoxlogin">
-            <img class="icon_tieude_login" src="img\avatar.png" ng-touchend="showBoxlogin = !showBoxlogin">
-            <div class="tieude_login" ng-click="showBoxlogin = !showBoxlogin">
+            <img class="icon_tieude_login" src="img\avatar.png" ng-tap="showBoxlogin = !showBoxlogin">
+            <div class="tieude_login" ng-tap="showBoxlogin = !showBoxlogin">
                 <h4>{{titleLoginBox}}<br></h4>
             </div>
             <div class="xem_noidung" ng-if="!travedaDangnhap()">
                 <input class="input_login" type="text" placeholder="Mã sinh viên" ng-model="inforLogin.taiKhoan">
                 <input class="input_login" type="text" placeholder="Mật khẩu" ng-model="inforLogin.matKhau">
-                <button class="button_login" ng-click="Ktra();"> Đăng nhập</button>
+                <button class="button_login" ng-tap="Ktra();"> Đăng nhập</button>
                 <br>
             </div>
             <div ng-if="travedaDangnhap()" ng-repeat="loginRec in loginRec">
@@ -18,11 +18,11 @@
                         <br> Ngày sinh: <b>{{::loginRec.Birthday}}</b>
                         <br> Lớp: <b>{{::loginRec.Class}}</b>
                     </div>
-                    <button class="ion-log-out button_login" ng-click="dangXuat();"> Đăng xuất</button>
-                    <div data-target="#xemKetQuaHocTap" data-toggle="modal" role="button">
+                    <button class="ion-log-out button_login" ng-tap="dangXuat();"> Đăng xuất</button>
+                    <div ng-tap="moKetQua();" data-target="#xemKetQuaHocTap" data-toggle="modal" role="button">
                         <div ng-class="cssLinkMenu"><div class="ion-ios-albums size-24 canhleicon"></div> Xem kết quả học tập</div>
                     </div>
-                    <div data-target="#dangKiHocPhan" data-toggle="modal" role="button">
+                    <div ng-tap="moDangKi();" data-target="#dangKiHocPhan" data-toggle="modal" role="button">
                         <div ng-class="cssLinkMenu"><div class="ion-ios-compose size-24 canhleicon"></div> Đăng kí học phần</div>
                     </div>
                 </div>
@@ -54,9 +54,9 @@
                     <div ng-class="cssFontSize"><b>{{::datapdu.Title}} </b></div>
                     <div class="baiviet_tieude_content">
                         <div class="baiviet_tieude_title">
-                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-touchend="saveToSQLite(datapdu);"></i>
-                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-touchend="deleteToSQLite(datapdu);"></i>
-                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-touchend="shareTo();"></i>
+                            <i span ng-hide="checkTonTai(datapdu)" class="ion-ios-cloud-download-outline size-45" ng-click="saveToSQLite(datapdu);"></i>
+                            <i span ng-hide="!checkTonTai(datapdu)" class="ion-ios-trash-outline size-45" ng-click="deleteToSQLite(datapdu);"></i>
+                            <i span class="ion-ios-redo-outline iconshare-padding size-45" ng-tap="shareTo();"></i>
                         </div>
                         <div class="baiviet_tieude_info">
                             <div class="font1">
@@ -73,9 +73,9 @@
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
                     
-                    <button type="button" class="back_back ion-ios-arrow-left" ng-touchend="huyData();"></button>
+                    <button type="button" class="back_back ion-ios-arrow-left" ng-tap="huyData();"></button>
                     <span class="modal-title">Xem bài viết</span>
-                    <button type="button" class="setting_on_read ion-ios-gear-outline" data-target="#caiDatKhiXemQldt" data-toggle="modal" role="button"></button>
+                    <button type="button" class="setting_on_read ion-ios-gear-outline" ng-tap="moCaiDat();" data-target="#caiDatKhiXemQldt" data-toggle="modal" role="button"></button>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
                     
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <button type="button" ng-tap="dongKetQua();" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Kết quả học tập</span>
                 </div>
             </div>
@@ -138,15 +138,14 @@
                         <br>
                         <br>
                         <div class="span4 offset4 text-center">
-                            <button class="btn button_hp"  ng-repeat="lop in hocPhan.lophoc" ng-click="dkHocPhan(lop)">{{::lop.name}}</button>                        <button class="btn button_ca" ng-click="dkHocPhan(nullLop[0])">Xóa</button>
+                            <button class="btn button_hp"  ng-repeat="lop in hocPhan.lophoc" ng-tap="dkHocPhan(lop)">{{::lop.name}}</button>                        <button class="btn button_ca" ng-tap="dkHocPhan(nullLop[0])">Xóa</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div ng-class="cssModeHeader">
                 <div ng-class="cssModeModalHeader">
-                    
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <button type="button" ng-tap="dongDangKi();" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <span class="modal-title">Đăng kí học phần</span>
                 </div>
             </div>
@@ -155,23 +154,23 @@
     <div id="caiDatKhiXemQldt" class="modal-setting fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div ng-class="cssModal">
             <div ng-class="cssModalHeaderSetting">
-                <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                <button type="button" class="close ion-ios-close-outline" ng-tap="dongCaiDat();" data-dismiss="modal"></button>
                 <span class="modal-title">Cài đặt</span>
             </div>
             <div class="setting_content">
                 <div class="setting_title"><i span class="ion-arrow-resize size-17"></i><span class="size-22">A </span><span class="size-13"> Cỡ chữ</span></div>
                 <div class="setting_info">
                     <div class="sizefont_buttons" class="text-center">
-                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-touchend="setCurrentsizeFont(1);">
+                        <a ng-class="{'active':isCurrentsizeFont(1)}" ng-tap="setCurrentsizeFont(1);">
                             <span class="size-11">1</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-touchend="setCurrentsizeFont(2);">
+                        <a ng-class="{'active':isCurrentsizeFont(2)}" ng-tap="setCurrentsizeFont(2);">
                             <span class="size-13">2</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-touchend="setCurrentsizeFont(3);">
+                        <a ng-class="{'active':isCurrentsizeFont(3)}" ng-tap="setCurrentsizeFont(3);">
                             <span class="size-17">3</span>
                         </a>
-                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-touchend="setCurrentsizeFont(4);">
+                        <a ng-class="{'active':isCurrentsizeFont(4)}" ng-tap="setCurrentsizeFont(4);">
                             <span class="size-22">4</span>
                         </a>
                     </div>
@@ -195,7 +194,7 @@
         <div class="modal-dialog">
             <div ng-class="cssModalCat">
                 <div ng-class="cssModeModalCat">
-                    <button type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
+                    <button ng-tap="dongTheLoai();" type="button" class="close ion-ios-close-outline" data-dismiss="modal"></button>
                     <h4 class="modal-title">Chọn thể loại</h4>
                 </div>
                 <div ng-repeat="daChon in theLoaiList track by daChon.id">
@@ -208,9 +207,9 @@
     <div ng-class="cssModeHeader">
         <div ng-class="cssModeModalHeader">
             
-            <button type="button" class="back_back ion-ios-person" ng-touchend="showBoxlogin = !showBoxlogin"></button>
+            <button type="button" class="back_back ion-ios-person" ng-tap="showBoxlogin = !showBoxlogin"></button>
             <span class="modal-title">Quản lí đào tạo</span>
-            <button type="button" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiQldt" data-toggle="modal" role="button"></button>
+            <button type="button" ng-tap="moTheLoai();" class="setting_on_read ion-ios-search" data-target="#chonTheLoaiQldt" data-toggle="modal" role="button"></button>
         </div>
     </div>
 </div>

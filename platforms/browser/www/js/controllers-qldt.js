@@ -1,16 +1,6 @@
 angular.module('pduNewsApp')
 .controller('page_Qldt_Ctrl', function ($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaFileTransfer, $cordovaFile, $cordovaSocialSharing, $cordovaStatusbar, $cordovaDialogs, $cordovaInAppBrowser, $cordovaProgress, $cordovaSpinnerDialog) {
-
-    
-    
-//    document.addEventListener("deviceready", onDeviceReady, false);
-//    function onDeviceReady(){
-//        document.addEventListener("backbutton", function(e){
-//            $cordovaDialogs.alert("Nhấn từ qldt", "Hoàn thành"); 
-//        }, false);
-//    } 
-//    
-        
+   
     
     //Open link from this view
     $scope.openWeb = function(url){
@@ -54,6 +44,7 @@ angular.module('pduNewsApp')
         localStorageService.set('listIDSaved', $scope.tempListId);
         $cordovaSQLite.execute($rootScope.db, "INSERT INTO sqlSave (baiviet_id, baiviet_title, baiviet_date, baiviet_author, baiviet_content, baiviet_img, baiviet_thumb) VALUES (?,?,?,?,?,?,?)", [$scope.datapdu[0].Id + 'qldt', $scope.datapdu[0].Title, $scope.datapdu[0].Date, $scope.datapdu[0].Author, $scope.datapdu[0].Content, " ", "No"]).then(function (res) {}, function (err) {
         });
+       
     };
 
 
@@ -69,7 +60,7 @@ angular.module('pduNewsApp')
             }
         }
         $cordovaSQLite.execute($rootScope.db, "DELETE FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.Id + 'qldt']).then(function (res) {});
-        delete tongSoBai; delete i; delete $scope.tempListId;
+        delete tongSoBai; delete i;
     };
 
 
@@ -85,7 +76,7 @@ angular.module('pduNewsApp')
                 break;
             }
         }
-        delete n; delete i; delete $scope.tempListId;
+        delete n; delete i;
         return $scope.tonTai;
     };
 
@@ -97,7 +88,7 @@ angular.module('pduNewsApp')
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
             $timeout(function () {
                 $scope.dismiss();
-                delete $scope.datapdu;
+                $scope.datapdu =[];
             }, 300);
         }
         else
@@ -224,6 +215,7 @@ angular.module('pduNewsApp')
         }
     };
     $scope.autoLogin();
+    $rootScope.showBoxlogin = false;
     //Determine status of login process
     $scope.travedaDangnhap = function () {
         return daDangnhap == "true";
@@ -335,7 +327,12 @@ angular.module('pduNewsApp')
 
     //Opening view modal and show thread
     $scope.showDataId = function (idBaiViet) {
-                    $cordovaSpinnerDialog.show("","Đang tải", true);
+        $rootScope.tapToExit = 0;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 1; 
+        $rootScope.viewImage = 0;
+        $cordovaSpinnerDialog.show("","Đang tải", true);
         pduService.Qldt_getId(idBaiViet.Id).success(function (datapdus) {
             $scope.datapdu = datapdus;
             $cordovaSpinnerDialog.hide();
@@ -357,7 +354,43 @@ angular.module('pduNewsApp')
 
     //Close view modal and destroy data
     $scope.huyData = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 0; 
+        $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
+        angular.element('#caiDatKhiXemQldt').modal('hide');
+    };
+    $scope.moTheLoai = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.openTheLoai = 1;
+    };
+    $scope.dongTheLoai = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openTheLoai = 0;
+    };
+    $scope.moKetQua = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.viewStudieResult = 1;
+    };
+    $scope.dongKetQua = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.viewStudieResult = 0;
+    };
+    $scope.moDangKi = function () {
+        $rootScope.tapToExit = 0;
+        $rootScope.viewRegisterHP = 1;
+    };
+    $scope.dongDangKi = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.viewRegisterHP = 0;
+    };
+    $scope.moCaiDat = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongCaiDat = function () { 
+        $rootScope.openCaiDat = 0;
     };
 
 

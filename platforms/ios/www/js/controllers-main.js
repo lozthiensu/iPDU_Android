@@ -2,6 +2,34 @@ angular.module('pduNewsApp')
 .controller('main_Ctrl', function($scope, pduService, $rootScope, $timeout, localStorageService, $cordovaSQLite, $cordovaStatusbar, $cordovaLocalNotification, $cordovaDialogs, $interval, $cordovaInAppBrowser, $cordovaProgress, $cordovaToast) { 
     
     
+    //Slider set brightness
+    $rootScope.slider = {
+        value: 0
+        , options: {
+            floor: 0
+            , ceil: 100
+            , step: 5
+            , precision: 1
+            , hidePointerLabels: true
+            , hideLimitLabels: true
+            , ticksTooltip: true
+            , ticksValuesTooltip: true
+            , onChange: function () {
+                window.brightness = cordova.require("cordova.plugin.Brightness.Brightness");
+                brightness.setBrightness($rootScope.slider.value / 100, win, fail);
+                function fail(status) {
+                    $cordovaDialogs.alert(status, "Lỗi !!!");
+                }
+                function win(status) {
+                }
+                localStorageService.set('doSang', [{
+                    "giaTri": $rootScope.slider.value
+                }]);
+            }
+        }
+    }; 
+        
+    
     //Process event backbutton event
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
@@ -21,12 +49,15 @@ angular.module('pduNewsApp')
                 } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
                     angular.element('#slideHinhHome').modal('hide');
                     angular.element('#slideHinhCntt').modal('hide');
+                    angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
                     $rootScope.viewImage = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 1 && $rootScope.openCaiDat == 0 && $rootScope.openThread == 1) {
                     angular.element('#slideHinhHome').modal('hide');
                     angular.element('#slideHinhCntt').modal('hide');
                     angular.element('#slideHinhNews').modal('hide');
+                    angular.element('#slideHinhSave').modal('hide');
                     $rootScope.viewImage = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
@@ -34,6 +65,7 @@ angular.module('pduNewsApp')
                     angular.element('#caiDatKhiXemCntt').modal('hide');
                     angular.element('#caiDatKhiXemQldt').modal('hide');
                     angular.element('#caiDatKhiXemNews').modal('hide');
+                    angular.element('#caiDatKhiXemSave').modal('hide');
                     angular.element('#huongDan').modal('hide');
                     angular.element('#dieuKhoan').modal('hide');
                     $rootScope.openCaiDat = 0;
@@ -45,6 +77,7 @@ angular.module('pduNewsApp')
                         angular.element('#hienBaiCntt').modal('hide');
                         angular.element('#hienBaiQldt').modal('hide');
                         angular.element('#hienBaiNews').modal('hide');
+                        angular.element('#hienBaiSave').modal('hide');
                         angular.element('#hienInfoApp').modal('hide');
                     }, 500);
                     $rootScope.tapToExit = 1;
@@ -80,6 +113,11 @@ angular.module('pduNewsApp')
     };
     
     
+    //Load data setting when main loading
+    $rootScope.doSang = localStorageService.get('doSang');
+    if ( !$rootScope.doSang ) {
+        $rootScope.doSang = [{"giaTri": 85}];
+    }
     //Load data setting when main loading
     $rootScope.settingData = localStorageService.get('settingData');
     if ( !$rootScope.settingData ) {
@@ -155,7 +193,7 @@ angular.module('pduNewsApp')
                 delete dataSession;
 			});  
     };
-    $scope.autoRefresh();
+    //$scope.autoRefresh();
     $scope.countDieInterval = 0;
     $scope.intervalPromise = $interval(function(){
         $scope.countDieInterval++;

@@ -1,7 +1,11 @@
 {
     "AudioToolbox.framework": 1,
+    "libz.dylib": 1,
+    "CFNetwork.framework": 1,
+    "SystemConfiguration.framework": 1,
     "Social.framework": 1,
     "MessageUI.framework": 1,
+    "QuartzCore.framework": 1,
     "libsqlite3.dylib": 1,
-    "QuartzCore.framework": 2
+    "UIKit.framework": 1
 }

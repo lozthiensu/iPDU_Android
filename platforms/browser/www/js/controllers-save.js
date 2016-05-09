@@ -16,14 +16,6 @@ angular.module('pduNewsApp')
     }
 
 
-    //Show or hide button delete thread
-    $scope.deleteButton = false;
-    $scope.showDeleteButton = function () {
-        $scope.deleteButton = !$scope.deleteButton;
-        return $scope.deleteButton;
-    }
-
-
     //Contain data for binding when view thread
     $scope.datapdu = [];
 
@@ -32,12 +24,18 @@ angular.module('pduNewsApp')
 
 
     //Determine status modal view thread
+    $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
     $scope.getTrangThaiModal = function () {
-        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig")
+        if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig"){
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+            $timeout(function () {
+                $scope.dismiss();
+                $scope.datapdu =[];
+            }, 300);
+        }
         else
             $rootScope.classHienThiBaiViet = "modal animated fadeInRightBig";
-    }
+    };
 
 
     //Set new font size
@@ -111,12 +109,17 @@ angular.module('pduNewsApp')
 
     //View a thread 
     $scope.showById = function (idBaiViet) {
+        $rootScope.tapToExit = 0;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 1; 
+        $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
         $cordovaSQLite.execute($rootScope.db, "SELECT * FROM sqlSave WHERE baiviet_id = ?", [idBaiViet.baiviet_id]).then(function (res) {
             $scope.datapdu.push(res.rows.item(0));
-            contentConvert = $scope.datapdu[0].Content;
-            contentConvert = contentConvert.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhSave' data-toggle='modal' ");
-            $scope.datapdu[0].Content = contentConvert;
+            //contentConvert = $scope.datapdu[0].Content;
+            //contentConvert = contentConvert.replace(/class='img-responsive'/g, " class='img-responsive' data-target='#slideHinhSave' data-toggle='modal' ");
+            //$scope.datapdu[0].Content = contentConvert;
         });
     };
 
@@ -134,19 +137,31 @@ angular.module('pduNewsApp')
 
     //Set img to zoom
     $scope.zoomThisImage = function (url, data) {
-        var json = JSON.parse(data);
-        $scope.urlImgageZoom = data[url].Url;
-        delete url; delete data;
+        $rootScope.viewImage = 1;
+        json = JSON.parse(data);
+        $scope.urlImgageZoom = json[url].Url;
+        delete url; delete data; delete json;
     };
 
 
     //Close modal view thread
     $scope.huyData = function () {
+        $rootScope.tapToExit = 1;
+        $rootScope.openCaiDat = 0;
+        $rootScope.openTheLoai = 0;
+        $rootScope.openThread = 0; 
+        $rootScope.viewImage = 0;
         $scope.getTrangThaiModal();
-        $timeout(function () {
-            $scope.dismiss();
-            $scope.datapdu = [];
-        }, 300);
+        angular.element('#caiDatKhiXemSave').modal('hide');
+    };
+    $scope.moCaiDat = function () {
+        $rootScope.openCaiDat = 1;
+    };
+    $scope.dongCaiDat = function () { 
+        $rootScope.openCaiDat = 0;
+    };
+    $scope.dongImage = function () { 
+        $rootScope.viewImage = 0;
     };
 
 

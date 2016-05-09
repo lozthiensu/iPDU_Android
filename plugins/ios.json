@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
@@ -34,19 +37,25 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+        "cordova-plugin-webserver": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "de.appplant.cordova.plugin.local-notification": {
+        "cordova.plugin.Brightness": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "cordova-plugin-x-toast": {
+        "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },

@@ -23,10 +23,14 @@ angular.module('pduNewsApp')
     $rootScope.saveLogin = []; //Contain login info 
     $rootScope.SavedSession = []; //Contain index tab
     
+    $rootScope.fixedDoubleEventBackbutton = 0;
     $rootScope.tapToExit = 1;
     $rootScope.openCaiDat = 0;
     $rootScope.openTheLoai = 0;
     $rootScope.openThread = 0; 
+    $rootScope.viewImage = 0; 
+    $rootScope.viewStudieResult = 0; 
+    $rootScope.viewRegisterHP = 0; 
     $rootScope.viewImage = 0; 
 
     //When device ready, do it
