@@ -86,9 +86,9 @@ angular.module('pduNewsApp')
     $scope.getTrangThaiModal = function () {
         if ($rootScope.classHienThiBaiViet == "modal animated fadeInRightBig"){
             $rootScope.classHienThiBaiViet = "modal animated fadeOutRightBig";
+            $scope.datapdu =[];
             $timeout(function () {
                 $scope.dismiss();
-                $scope.datapdu =[];
                 angular.element('#caiDatKhiXemQldt').modal('hide');
             }, 300);
         }

@@ -3,7 +3,7 @@
 Phiên bản 0.1 beta test
 ```
 # iPDU Logo
-![iPDU logo](http://ipdu.itpdu.net/logo.png)
+![iPDU logo](http://svpdu.net/ipdu/logo.png)
 
 # Giới thiệu
 ```

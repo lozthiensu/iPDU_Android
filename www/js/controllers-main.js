@@ -61,13 +61,16 @@ angular.module('pduNewsApp')
                     $rootScope.viewImage = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 1 && $rootScope.openThread == 1) {
-                    angular.element('#caiDatKhiXem').modal('hide');
-                    angular.element('#caiDatKhiXemCntt').modal('hide');
-                    angular.element('#caiDatKhiXemQldt').modal('hide');
-                    angular.element('#caiDatKhiXemNews').modal('hide');
-                    angular.element('#caiDatKhiXemSave').modal('hide');
-                    angular.element('#huongDan').modal('hide');
-                    angular.element('#dieuKhoan').modal('hide');
+                    $rootScope.classHienThiCaiDat = "modal-setting animated fadeOutDownBig";
+                    $timeout(function () {
+                        angular.element('#caiDatKhiXem').modal('hide');
+                        angular.element('#caiDatKhiXemCntt').modal('hide');
+                        angular.element('#caiDatKhiXemQldt').modal('hide');
+                        angular.element('#caiDatKhiXemNews').modal('hide');
+                        angular.element('#caiDatKhiXemSave').modal('hide');
+                        angular.element('#huongDan').modal('hide');
+                        angular.element('#dieuKhoan').modal('hide');
+                    }, 300);
                     $rootScope.openCaiDat = 0;
                     $scope.$digest();
                 } else if ($rootScope.viewImage == 0 && $rootScope.openCaiDat == 0 && $rootScope.openThread == 1) {
@@ -79,7 +82,7 @@ angular.module('pduNewsApp')
                         angular.element('#hienBaiNews').modal('hide');
                         angular.element('#hienBaiSave').modal('hide');
                         angular.element('#hienInfoApp').modal('hide');
-                    }, 500);
+                    }, 300);
                     $rootScope.tapToExit = 1;
                     $rootScope.openThread = 0;
                     $scope.$digest();
